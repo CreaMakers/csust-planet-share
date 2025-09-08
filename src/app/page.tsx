@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { FaApple, FaAndroid } from "react-icons/fa";
 
+const ANDROID_URL = process.env.NEXT_PUBLIC_ANDROID_URL;
+const IOS_URL = process.env.NEXT_PUBLIC_IOS_URL;
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
@@ -42,7 +45,7 @@ export default function Home() {
           <div className="space-y-4 mb-12">
             {/* APK Direct Download Button */}
             <a
-              href="/downloads/changliplanet.apk"
+              href={ANDROID_URL}
               className="group flex items-center justify-center w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl py-5 px-6 shadow-xl hover:shadow-2xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105"
             >
               <div className="flex items-center space-x-4">
@@ -56,11 +59,11 @@ export default function Home() {
 
             {/* iOS Download Button */}
             <a
-              href="https://apps.apple.com/app/changliplanet"
-              className="group flex items-center justify-center w-full bg-black text-white rounded-2xl py-5 px-6 shadow-xl hover:shadow-2xl hover:bg-gray-900 transition-all duration-300 transform hover:scale-105"
+              href={IOS_URL}
+              className="group flex items-center justify-center w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl py-5 px-6 shadow-xl hover:shadow-2xl hover:from-blue-600 hover:to-blue-800 transition-all duration-300 transform hover:scale-105"
             >
               <div className="flex items-center space-x-4">
-                <FaApple className="w-8 h-8" />
+                <FaApple className="w-8 h-8 text-white" />
                 <div className="text-left">
                   <div className="text-xs opacity-80 font-medium">前往</div>
                   <div className="text-xl font-bold">TestFlight</div>
@@ -74,7 +77,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="absolute bottom-0 w-full py-8 px-4">
         <div className="max-w-md mx-auto text-center text-sm text-gray-500">
-          <p className="font-medium">&copy; 2024-2025 CreaMakers</p>
+          <p className="font-medium">&copy; 2024 CreaMakers</p>
         </div>
       </footer>
     </div>
