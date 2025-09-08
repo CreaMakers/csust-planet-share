@@ -42,17 +42,17 @@ export default function Home() {
           </div>
 
           {/* Download Buttons */}
-          <div className="space-y-4 mb-12">
+          <div className="space-y-3 mb-8">
             {/* APK Direct Download Button */}
             <a
               href={ANDROID_URL}
-              className="group flex items-center justify-center w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl py-5 px-6 shadow-xl hover:shadow-2xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105"
+              className="group flex items-center justify-center w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl py-3 px-4 shadow-lg hover:shadow-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105"
             >
-              <div className="flex items-center space-x-4">
-                <FaAndroid className="w-8 h-8" />
+              <div className="flex items-center space-x-3">
+                <FaAndroid className="w-6 h-6" />
                 <div className="text-left">
                   <div className="text-xs opacity-90 font-medium">直接下载</div>
-                  <div className="text-xl font-bold">Android APK</div>
+                  <div className="text-lg font-bold">Android APK</div>
                 </div>
               </div>
             </a>
@@ -60,16 +60,45 @@ export default function Home() {
             {/* iOS Download Button */}
             <a
               href={IOS_URL}
-              className="group flex items-center justify-center w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl py-5 px-6 shadow-xl hover:shadow-2xl hover:from-blue-600 hover:to-blue-800 transition-all duration-300 transform hover:scale-105"
+              className="group flex items-center justify-center w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl py-3 px-4 shadow-lg hover:shadow-xl hover:from-blue-600 hover:to-blue-800 transition-all duration-300 transform hover:scale-105"
             >
-              <div className="flex items-center space-x-4">
-                <FaApple className="w-8 h-8 text-white" />
+              <div className="flex items-center space-x-3">
+                <FaApple className="w-6 h-6 text-white" />
                 <div className="text-left">
                   <div className="text-xs opacity-80 font-medium">前往</div>
-                  <div className="text-xl font-bold">TestFlight</div>
+                  <div className="text-lg font-bold">TestFlight</div>
                 </div>
               </div>
             </a>
+          </div>
+
+          {/* Project Info */}
+          <div className="text-center space-y-3 mb-12">
+            <p className="text-gray-700 font-medium">🌟 这是一个开源项目</p>
+            <div className="space-y-2">
+              <p className="text-gray-600 text-sm">
+                关注我们：
+                <a
+                  href="https://github.com/CreaMakers"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800 underline ml-1"
+                >
+                  GitHub
+                </a>
+              </p>
+              <p className="text-gray-600 text-sm">
+                加入我们：
+                <a
+                  href="https://creamaker.feishu.cn/share/base/form/shrcnOIl2W9rBAcEYYrK12l6Ffd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800 underline ml-1"
+                >
+                  申请表单
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </main>
