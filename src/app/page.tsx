@@ -106,7 +106,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="absolute bottom-0 w-full py-8 px-4">
         <div className="max-w-md mx-auto text-center text-sm text-gray-500">
-          <p className="font-medium">&copy; 2024 CreaMakers</p>
+          <p className="font-medium">&copy; 2024-2025 CreaMakers</p>
         </div>
       </footer>
     </div>
