@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     try {
       const configFile = await fs.readFile(configPath, "utf8");
       currentConfig = JSON.parse(configFile);
-    } catch (error) {
+    } catch {
       return NextResponse.json({ error: "无法读取配置文件" }, { status: 500 });
     }
 
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
         JSON.stringify(updatedConfig, null, 2),
         "utf8"
       );
-    } catch (error) {
+    } catch {
       return NextResponse.json({ error: "无法写入配置文件" }, { status: 500 });
     }
 
@@ -107,7 +107,7 @@ export async function GET(request: NextRequest) {
       const configFile = await fs.readFile(configPath, "utf8");
       const config = JSON.parse(configFile);
       return NextResponse.json(config);
-    } catch (error) {
+    } catch {
       return NextResponse.json({ error: "无法读取配置文件" }, { status: 500 });
     }
   } catch (error) {
