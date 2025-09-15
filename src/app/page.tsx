@@ -11,7 +11,7 @@ interface Config {
 }
 
 async function getConfig(): Promise<Config> {
-  const configPath = path.join(process.cwd(), "public", "config.json");
+  const configPath = path.join(process.cwd(), "config.json");
   const configFile = await fs.readFile(configPath, "utf8");
   return JSON.parse(configFile);
 }
