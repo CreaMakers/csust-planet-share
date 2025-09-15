@@ -1,10 +1,23 @@
 import Image from "next/image";
 import { FaApple, FaAndroid } from "react-icons/fa";
+import fs from "fs/promises";
+import path from "path";
 
-const ANDROID_URL = process.env.NEXT_PUBLIC_ANDROID_URL;
-const IOS_URL = process.env.NEXT_PUBLIC_IOS_URL;
+interface Config {
+  downloadUrls: {
+    android: string;
+    ios: string;
+  };
+}
 
-export default function Home() {
+async function getConfig(): Promise<Config> {
+  const configPath = path.join(process.cwd(), "public", "config.json");
+  const configFile = await fs.readFile(configPath, "utf8");
+  return JSON.parse(configFile);
+}
+
+export default async function Home() {
+  const config = await getConfig();
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Animated Background Elements */}
@@ -45,7 +58,7 @@ export default function Home() {
           <div className="space-y-3 mb-8">
             {/* APK Direct Download Button */}
             <a
-              href={ANDROID_URL}
+              href={config.downloadUrls.android}
               className="group flex items-center justify-center w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl py-3 px-4 shadow-lg hover:shadow-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105"
             >
               <div className="flex items-center space-x-3">
@@ -59,7 +72,7 @@ export default function Home() {
 
             {/* iOS Download Button */}
             <a
-              href={IOS_URL}
+              href={config.downloadUrls.ios}
               className="group flex items-center justify-center w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl py-3 px-4 shadow-lg hover:shadow-xl hover:from-blue-600 hover:to-blue-800 transition-all duration-300 transform hover:scale-105"
             >
               <div className="flex items-center space-x-3">
