@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Image from "next/image";
 import { FaApple, FaAndroid } from "react-icons/fa";
 import fs from "fs/promises";
