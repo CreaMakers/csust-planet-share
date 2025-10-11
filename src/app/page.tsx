@@ -8,7 +8,8 @@ import path from "path";
 interface Config {
   downloadUrls: {
     android: string;
-    ios: string;
+    ios_testflight: string;
+    ios_appstore: string;
   };
 }
 
@@ -72,15 +73,29 @@ export default async function Home() {
               </div>
             </a>
 
-            {/* iOS Download Button */}
+            {/* iOS App Store Button */}
             <a
-              href={config.downloadUrls.ios}
+              href={config.downloadUrls.ios_appstore}
               className="group flex items-center justify-center w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl py-3 px-4 shadow-lg hover:shadow-xl hover:from-blue-600 hover:to-blue-800 transition-all duration-300 transform hover:scale-105"
             >
               <div className="flex items-center space-x-3">
                 <FaApple className="w-6 h-6 text-white" />
                 <div className="text-left">
-                  <div className="text-xs opacity-80 font-medium">前往</div>
+                  <div className="text-xs opacity-80 font-medium">正式版</div>
+                  <div className="text-lg font-bold">App Store</div>
+                </div>
+              </div>
+            </a>
+
+            {/* iOS TestFlight Button */}
+            <a
+              href={config.downloadUrls.ios_testflight}
+              className="group flex items-center justify-center w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl py-3 px-4 shadow-lg hover:shadow-xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="flex items-center space-x-3">
+                <FaApple className="w-6 h-6 text-white" />
+                <div className="text-left">
+                  <div className="text-xs opacity-80 font-medium">公测版</div>
                   <div className="text-lg font-bold">TestFlight</div>
                 </div>
               </div>

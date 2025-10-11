@@ -5,7 +5,8 @@ import path from "path";
 interface Config {
   downloadUrls: {
     android: string;
-    ios: string;
+    ios_testflight: string;
+    ios_appstore: string;
   };
 }
 
@@ -48,8 +49,13 @@ export async function POST(request: NextRequest) {
       if (updateData.downloadUrls.android) {
         updatedConfig.downloadUrls.android = updateData.downloadUrls.android;
       }
-      if (updateData.downloadUrls.ios) {
-        updatedConfig.downloadUrls.ios = updateData.downloadUrls.ios;
+      if (updateData.downloadUrls.ios_testflight) {
+        updatedConfig.downloadUrls.ios_testflight =
+          updateData.downloadUrls.ios_testflight;
+      }
+      if (updateData.downloadUrls.ios_appstore) {
+        updatedConfig.downloadUrls.ios_appstore =
+          updateData.downloadUrls.ios_appstore;
       }
     }
 
@@ -57,8 +63,11 @@ export async function POST(request: NextRequest) {
     if (updateData.android) {
       updatedConfig.downloadUrls.android = updateData.android;
     }
-    if (updateData.ios) {
-      updatedConfig.downloadUrls.ios = updateData.ios;
+    if (updateData.ios_testflight) {
+      updatedConfig.downloadUrls.ios_testflight = updateData.ios_testflight;
+    }
+    if (updateData.ios_appstore) {
+      updatedConfig.downloadUrls.ios_appstore = updateData.ios_appstore;
     }
 
     // 写入更新后的配置文件
