@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaApple, FaAndroid } from "react-icons/fa";
 import fs from "fs/promises";
 import path from "path";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface Config {
   downloadUrls: {
@@ -22,12 +23,15 @@ async function getConfig(): Promise<Config> {
 export default async function Home() {
   const config = await getConfig();
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 flex flex-col transition-colors duration-500">
+      <div className="absolute top-6 right-6 z-50">
+        <ThemeToggle />
+      </div>
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200/30 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-purple-200/40 rounded-full blur-lg animate-bounce"></div>
-        <div className="absolute bottom-40 left-20 w-28 h-28 bg-indigo-200/35 rounded-full blur-xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200/30 dark:bg-blue-500/10 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-24 h-24 bg-purple-200/40 dark:bg-purple-500/10 rounded-full blur-lg animate-bounce"></div>
+        <div className="absolute bottom-40 left-20 w-28 h-28 bg-indigo-200/35 dark:bg-indigo-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
       </div>
 
       {/* Main Content */}
@@ -35,7 +39,7 @@ export default async function Home() {
         <div className="max-w-sm w-full mx-auto">
           {/* App Logo */}
           <div className="text-center mb-8 sm:mb-12">
-            <div className="inline-block p-2 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50">
+            <div className="inline-block p-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 dark:border-slate-700 transition-colors duration-500">
               <Image
                 src="/logo_transparent.png"
                 alt="长理星球"
@@ -49,10 +53,10 @@ export default async function Home() {
 
           {/* App Info */}
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4 sm:mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 dark:text-white mb-4 sm:mb-6 tracking-tight transition-colors duration-500">
               长理星球
             </h2>
-            <p className="text-gray-700 text-base sm:text-lg leading-relaxed font-medium">
+            <p className="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed font-medium transition-colors duration-500">
               长理校园生活一站式助手
             </p>
           </div>
@@ -104,26 +108,28 @@ export default async function Home() {
 
           {/* Project Info */}
           <div className="text-center space-y-3 mb-8 sm:mb-12">
-            <p className="text-gray-700 font-medium">🌟 这是一个开源项目</p>
+            <p className="text-gray-700 dark:text-gray-300 font-medium transition-colors duration-500">
+              🌟 这是一个开源项目
+            </p>
             <div className="space-y-2">
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors duration-500">
                 关注我们：
                 <a
                   href="https://github.com/CreaMakers"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800 underline ml-1"
+                  className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline ml-1"
                 >
                   GitHub
                 </a>
               </p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors duration-500">
                 加入我们：
                 <a
                   href="https://creamaker.feishu.cn/share/base/form/shrcnOIl2W9rBAcEYYrK12l6Ffd"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800 underline ml-1"
+                  className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline ml-1"
                 >
                   申请表单
                 </a>
@@ -135,7 +141,7 @@ export default async function Home() {
 
       {/* Footer */}
       <footer className="relative w-full py-4 px-4 mt-auto">
-        <div className="max-w-md mx-auto text-center text-sm text-gray-500">
+        <div className="max-w-md mx-auto text-center text-sm text-gray-500 dark:text-gray-400 transition-colors duration-500">
           <p className="font-medium">&copy; 2024-2025 CreaMakers</p>
         </div>
       </footer>
