@@ -1,149 +1,45 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "长理星球App",
+};
+
 export const dynamic = "force-dynamic";
 
 import Image from "next/image";
-import { FaApple, FaAndroid } from "react-icons/fa";
-import fs from "fs/promises";
-import path from "path";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
-interface Config {
-  downloadUrls: {
-    android: string;
-    ios_testflight: string;
-    ios_appstore: string;
-  };
-}
+import Link from "next/link";
+import { FaChevronRight } from "react-icons/fa";
 
-async function getConfig(): Promise<Config> {
-  const configPath = path.join(process.cwd(), "config.json");
-  const configFile = await fs.readFile(configPath, "utf8");
-  return JSON.parse(configFile);
-}
-
-export default async function Home() {
-  const config = await getConfig();
+export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 flex flex-col transition-colors duration-500">
-      <div className="absolute top-6 right-6 z-50">
-        <ThemeToggle />
-      </div>
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200/30 dark:bg-blue-500/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-purple-200/40 dark:bg-purple-500/10 rounded-full blur-lg animate-bounce"></div>
-        <div className="absolute bottom-40 left-20 w-28 h-28 bg-indigo-200/35 dark:bg-indigo-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
-      </div>
-
+    <div className="min-h-screen bg-[#F5F5F7] dark:bg-[#000000] text-[#1D1D1F] dark:text-[#F5F5F7] font-sans flex flex-col transition-colors duration-500 overflow-hidden">
       {/* Main Content */}
-      <main className="relative flex flex-col items-center justify-center px-6 py-8">
-        <div className="max-w-sm w-full mx-auto">
-          {/* App Logo */}
-          <div className="text-center mb-8 sm:mb-12">
-            <div className="inline-block p-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 dark:border-slate-700 transition-colors duration-500">
-              <Image
-                src="/logo_transparent.png"
-                alt="长理星球"
-                width={120}
-                height={120}
-                className="w-30 h-30 drop-shadow-lg"
-                priority
-              />
-            </div>
+      <main className="flex-grow flex flex-col items-center justify-center text-center px-4 relative">
+        <div className="mb-8 transition-all duration-1000 ease-out transform opacity-0 animate-in fade-in slide-in-from-bottom-4 fill-mode-forwards" style={{ animationDelay: "0ms", opacity: 1 }}>
+          <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto drop-shadow-2xl">
+            <Image src="/logo_transparent.png" alt="CSUST Planet Share" fill className="object-contain" priority />
           </div>
+        </div>
 
-          {/* App Info */}
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 dark:text-white mb-4 sm:mb-6 tracking-tight transition-colors duration-500">
-              长理星球
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed font-medium transition-colors duration-500">
-              长理校园生活一站式助手
-            </p>
-          </div>
+        <h1 className="text-5xl md:text-7xl font-semibold tracking-tighter mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#1D1D1F] to-[#434344] dark:from-[#F5F5F7] dark:to-[#A1A1A6] transition-all duration-1000 ease-out transform opacity-0 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards" style={{ animationDelay: "300ms", opacity: 1 }}>
+          长理星球
+        </h1>
 
-          {/* Download Buttons */}
-          <div className="space-y-3 mb-6 sm:mb-8">
-            {/* APK Direct Download Button */}
-            <a
-              href={config.downloadUrls.android}
-              className="group flex items-center justify-center w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl py-3 px-4 shadow-lg hover:shadow-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105"
-            >
-              <div className="flex items-center space-x-3">
-                <FaAndroid className="w-6 h-6" />
-                <div className="text-left">
-                  <div className="text-xs opacity-90 font-medium">直接下载</div>
-                  <div className="text-lg font-bold">Android APK</div>
-                </div>
-              </div>
-            </a>
+        <p className="text-xl md:text-2xl text-[#86868B] max-w-lg mx-auto mb-10 font-medium leading-relaxed transition-all duration-1000 ease-out transform opacity-0 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards" style={{ animationDelay: "500ms", opacity: 1 }}>
+          你的校园生活，从未如此简单。
+        </p>
 
-            {/* iOS App Store Button */}
-            <a
-              href={config.downloadUrls.ios_appstore}
-              className="group flex items-center justify-center w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl py-3 px-4 shadow-lg hover:shadow-xl hover:from-blue-600 hover:to-blue-800 transition-all duration-300 transform hover:scale-105"
-            >
-              <div className="flex items-center space-x-3">
-                <FaApple className="w-6 h-6 text-white" />
-                <div className="text-left">
-                  <div className="text-xs opacity-80 font-medium">正式版</div>
-                  <div className="text-lg font-bold">App Store</div>
-                </div>
-              </div>
-            </a>
-
-            {/* iOS TestFlight Button */}
-            <a
-              href={config.downloadUrls.ios_testflight}
-              className="group flex items-center justify-center w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl py-3 px-4 shadow-lg hover:shadow-xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
-            >
-              <div className="flex items-center space-x-3">
-                <FaApple className="w-6 h-6 text-white" />
-                <div className="text-left">
-                  <div className="text-xs opacity-80 font-medium">公测版</div>
-                  <div className="text-lg font-bold">TestFlight</div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          {/* Project Info */}
-          <div className="text-center space-y-3 mb-8 sm:mb-12">
-            <p className="text-gray-700 dark:text-gray-300 font-medium transition-colors duration-500">
-              🌟 这是一个开源项目
-            </p>
-            <div className="space-y-2">
-              <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors duration-500">
-                关注我们：
-                <a
-                  href="https://github.com/CreaMakers"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline ml-1"
-                >
-                  GitHub
-                </a>
-              </p>
-              <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors duration-500">
-                加入我们：
-                <a
-                  href="https://creamaker.feishu.cn/share/base/form/shrcnOIl2W9rBAcEYYrK12l6Ffd"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline ml-1"
-                >
-                  申请表单
-                </a>
-              </p>
-            </div>
-          </div>
+        <div className="transition-all duration-1000 ease-out transform opacity-0 animate-in fade-in slide-in-from-bottom-8 fill-mode-forwards" style={{ animationDelay: "700ms", opacity: 1 }}>
+          <Link href="/install" className="inline-flex items-center gap-2 bg-[#0071e3] hover:bg-[#0077ED] text-white text-lg md:text-xl px-8 py-3 rounded-full font-medium transition-all">
+            立即安装 <FaChevronRight className="text-sm" />
+          </Link>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="relative w-full py-4 px-4 mt-auto">
-        <div className="max-w-md mx-auto text-center text-sm text-gray-500 dark:text-gray-400 transition-colors duration-500">
-          <p className="font-medium">&copy; 2024-2025 CreaMakers</p>
-        </div>
+      <footer className="w-full py-6 text-center text-xs text-[#86868B]">
+        <p>&copy; 2024-2026 CreaMakers. All rights reserved.</p>
       </footer>
     </div>
   );
