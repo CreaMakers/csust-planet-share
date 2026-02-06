@@ -25,26 +25,28 @@ export default async function InstallPage() {
   const config = await getConfig();
 
   return (
-    <div className="min-h-screen bg-[#F5F5F7] dark:bg-[#000000] text-[#1D1D1F] dark:text-[#F5F5F7] font-sans transition-colors duration-500 overflow-hidden">
-      <main className="relative flex flex-col items-center justify-center min-h-screen px-6 py-12">
-        <div className="text-center mb-16 max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-forwards">
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-4 text-[#1D1D1F] dark:text-[#F5F5F7]">选择你的平台</h1>
+    // Padding bottom is handled by layout footer or can be kept if extra space is needed, but we should remove the full page wrapper styles
+    <div className="pb-10 w-full">
+      <main className="flex flex-col items-center pt-32 px-6">
+        <div className="text-center mb-20 max-w-xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-semibold tracking-tight mb-6 text-[#1D1D1F] dark:text-[#F5F5F7]">下载长理星球</h1>
+          <p className="text-xl md:text-2xl font-normal text-[#86868B] leading-relaxed">选择适合你设备的版本。</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[980px] w-full mx-auto">
           {/* iOS App Store */}
-          <PlatformCard title="App Store" description="从 App Store 下载正式版，体验最稳定的功能。" icon={<FaAppStoreIos className="w-12 h-12 text-[#007AFF]" />} buttonText="前往下载" href={config.downloadUrls.ios_appstore} />
+          <PlatformCard title="App Store" description="从 App Store 安全下载，自动更新保持最新。" icon={<FaAppStoreIos className="w-14 h-14 text-[#007AFF]" />} buttonText="前往下载" href={config.downloadUrls.ios_appstore} />
 
           {/* iOS TestFlight */}
-          <PlatformCard title="TestFlight" description="加入 TestFlight 计划，抢先体验最新功能。" icon={<FaApple className="w-12 h-12 text-[#AF52DE]" />} buttonText="加入测试" href={config.downloadUrls.ios_testflight} />
+          <PlatformCard title="TestFlight" description="体验正在开发的最新功能，参与 Beta 测试。" icon={<FaApple className="w-14 h-14 text-[#1D1D1F] dark:text-white" />} buttonText="加入测试" href={config.downloadUrls.ios_testflight} />
 
           {/* Android APK */}
-          <PlatformCard title="Android" description="直接下载 APK 安装包，适用于 Android 设备。" icon={<FaAndroid className="w-12 h-12 text-[#34C759]" />} buttonText="下载 APK" href={config.downloadUrls.android} />
+          <PlatformCard title="Android" description="适用于 Android 设备的安装包，直接下载安装。" icon={<FaAndroid className="w-14 h-14 text-[#34C759]" />} buttonText="下载 APK" href={config.downloadUrls.android} />
         </div>
 
-        <div className="mt-20 text-center animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 fill-mode-forwards">
-          <a href="/" className="text-[#0066CC] dark:text-[#2997FF] hover:underline text-sm font-medium">
-            返回首页
+        <div className="mt-24 text-center">
+          <a href="/" className="text-[#0066CC] dark:text-[#2997FF] hover:underline text-base font-medium">
+            返回首页 <span className="text-xs align-middle">↗</span>
           </a>
         </div>
       </main>
@@ -54,11 +56,11 @@ export default async function InstallPage() {
 
 function PlatformCard({ title, description, icon, buttonText, href }: { title: string; description: string; icon: React.ReactNode; buttonText: string; href: string }) {
   return (
-    <div className="flex flex-col items-center p-8 bg-white dark:bg-[#1C1C1E] rounded-3xl shadow-sm transition-shadow duration-300 border border-transparent dark:border-[#2C2C2E] animate-in fade-in scale-in-95 duration-500">
-      <div className="mb-6">{icon}</div>
-      <h3 className="text-2xl font-semibold mb-3 text-[#1D1D1F] dark:text-[#F5F5F7]">{title}</h3>
-      <p className="text-[#86868B] text-center mb-8 leading-relaxed h-16 flex items-center justify-center">{description}</p>
-      <a href={href} className="mt-auto bg-[#0071e3] hover:bg-[#0077ED] text-white px-6 py-2 rounded-full text-sm font-medium transition-all">
+    <div className="flex flex-col items-center p-10 bg-white dark:bg-[#1C1C1E] rounded-[30px] shadow-sm">
+      <div className="mb-8">{icon}</div>
+      <h3 className="text-3xl font-semibold mb-4 text-[#1D1D1F] dark:text-[#F5F5F7] tracking-tight">{title}</h3>
+      <p className="text-[#86868B] text-center mb-10 text-[17px] leading-relaxed font-normal min-h-[50px] flex items-center justify-center">{description}</p>
+      <a href={href} className="mt-auto bg-[#0071e3] text-white px-8 py-2.5 rounded-full text-[17px] font-medium min-w-[120px] text-center">
         {buttonText}
       </a>
     </div>

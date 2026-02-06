@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   title: "长理星球APP下载",
 };
 
+import { Footer } from "@/components/footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -14,10 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <body>
+      <body className="bg-[#F5F5F7] dark:bg-[#000000] text-[#1D1D1F] dark:text-[#F5F5F7] font-sans antialiased transition-colors duration-500">
         <Providers>
-          <NavBar />
-          {children}
+          <div className="flex flex-col min-h-screen">
+            <NavBar />
+            <div className="flex-grow flex flex-col relative z-0">{children}</div>
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>
