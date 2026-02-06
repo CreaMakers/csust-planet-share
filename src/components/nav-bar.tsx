@@ -1,6 +1,6 @@
 "use client";
 
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ThemeToggle } from "@/components/theme-toggle";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa";
 

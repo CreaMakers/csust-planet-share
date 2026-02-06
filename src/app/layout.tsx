@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Providers } from "./providers";
-import { NavBar } from "@/components/NavBar";
+import { Providers } from "../providers/providers";
+import { NavBar } from "@/components/nav-bar";
 
 export const metadata: Metadata = {
   title: "长理星球APP下载",

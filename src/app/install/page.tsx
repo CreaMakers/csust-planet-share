@@ -29,7 +29,6 @@ export default async function InstallPage() {
       <main className="relative flex flex-col items-center justify-center min-h-screen px-6 py-12">
         <div className="text-center mb-16 max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-forwards">
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-4 text-[#1D1D1F] dark:text-[#F5F5F7]">选择你的平台</h1>
-          <p className="text-xl text-[#86868B] dark:text-[#86868B] font-medium leading-relaxed">Choose your platform to get started.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full">
