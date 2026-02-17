@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import { ArrowRight, ChevronDown } from "@lucide/astro";
 import {
   ExternalLink,
@@ -15,6 +17,22 @@ import {
   siGithub,
   siAppstore,
 } from "simple-icons";
+
+const DEFAULT_APK_URL = "#";
+
+const CONFIG_FILE_PATH = resolve(process.cwd(), "config/config.json");
+
+let androidApkUrl = DEFAULT_APK_URL;
+
+try {
+  const configRaw = await readFile(CONFIG_FILE_PATH, "utf-8");
+  const config = JSON.parse(configRaw) as { apkUrl?: string };
+  if (typeof config.apkUrl === "string" && config.apkUrl.trim()) {
+    androidApkUrl = config.apkUrl.trim();
+  }
+} catch {
+  androidApkUrl = DEFAULT_APK_URL;
+}
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -155,7 +173,7 @@ import {
             </a>
 
             <a
-              href="https://csustplant.obs.cn-south-1.myhuaweicloud.com/builds/release/18365022232_clPlanetApp_release_v1.2.3.apk"
+              href={androidApkUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="group flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-zinc-50/70 p-8 transition duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-200/60"
