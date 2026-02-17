@@ -1,0 +1,9 @@
+services:
+  app:
+    image: csust-planet-share
+    container_name: csust-planet-share
+    ports:
+      - "4321:4321"
+    volumes:
+      - ./config/config.json:/app/config/config.json
+    restart: unless-stopped
