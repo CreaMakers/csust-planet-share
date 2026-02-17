@@ -9,10 +9,14 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.3",
     "@lucide/astro": "^0.574.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",
     "simple-icons": "^16.9.0",
     "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.3"
   }
 }
