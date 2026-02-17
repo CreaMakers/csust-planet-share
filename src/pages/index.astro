@@ -23,6 +23,9 @@ const DEFAULT_APK_URL = "#";
 const CONFIG_FILE_PATH = resolve(process.cwd(), "config/config.json");
 
 let androidApkUrl = DEFAULT_APK_URL;
+const pageTitle = "长理星球";
+const pageDescription =
+  "长理星球聚合校园生活常用功能，提供 iOS 与 Android 多种安装方式。";
 
 try {
   const configRaw = await readFile(CONFIG_FILE_PATH, "utf-8");
@@ -33,16 +36,48 @@ try {
 } catch {
   androidApkUrl = DEFAULT_APK_URL;
 }
+
+const pageUrl = Astro.url.href;
+const previewImageUrl = new URL("/logo_transparent.png", Astro.url).href;
 ---
 
-<html lang="en" class="scroll-smooth">
+<html lang="zh-CN" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>长理星球</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content="index,follow" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#fafafa"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#09090b"
+    />
+    <link rel="canonical" href={pageUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="长理星球" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:image" content={previewImageUrl} />
+    <meta property="og:image:alt" content="长理星球应用图标" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={previewImageUrl} />
+
+    <title>{pageTitle}</title>
   </head>
   <body
     class="min-h-screen bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100"
@@ -150,7 +185,7 @@ try {
                 通过 App Store 下载并安装 iOS 正式版。
               </p>
               <span
-                class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-600"
+                class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-700 dark:text-blue-400"
               >
                 前往 App Store
                 <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -179,7 +214,7 @@ try {
                 加入 TestFlight，抢先体验 iOS 测试版本。
               </p>
               <span
-                class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-600"
+                class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-700 dark:text-blue-400"
               >
                 加入 TestFlight
                 <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -215,7 +250,7 @@ try {
                 下载 Android APK 安装包，直接完成安装。
               </p>
               <span
-                class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-600"
+                class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-700 dark:text-blue-400"
               >
                 下载 Android APK
                 <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -243,7 +278,7 @@ try {
                 href="https://github.com/CreaMakers"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="mx-1 inline-flex items-center gap-1 font-medium text-blue-600 hover:underline"
+                class="mx-1 inline-flex items-center gap-1 font-medium text-blue-700 hover:underline dark:text-blue-400"
               >
                 CreaMakers
                 <svg
@@ -287,7 +322,7 @@ try {
                 长理星球 Android 客户端源码。
               </p>
               <span
-                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700 dark:text-blue-400"
               >
                 查看项目
                 <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -314,7 +349,7 @@ try {
                 Android 端配套后端服务。
               </p>
               <span
-                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700 dark:text-blue-400"
               >
                 查看项目
                 <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -341,7 +376,7 @@ try {
                 Android 端核心网络数据获取库。
               </p>
               <span
-                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700 dark:text-blue-400"
               >
                 查看项目
                 <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -375,7 +410,7 @@ try {
                 长理星球 iOS 客户端源码。
               </p>
               <span
-                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700 dark:text-blue-400"
               >
                 查看项目
                 <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -402,7 +437,7 @@ try {
                 iOS 端配套后端服务。
               </p>
               <span
-                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700 dark:text-blue-400"
               >
                 查看项目
                 <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -436,7 +471,7 @@ try {
                 iOS 端核心网络 SDK。
               </p>
               <span
-                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700 dark:text-blue-400"
               >
                 查看项目
                 <ExternalLink class="h-4 w-4" aria-hidden="true" />
