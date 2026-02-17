@@ -1,9 +1,11 @@
 services:
   app:
-    image: csust-planet-share
+    image: csust-planet-share:latest
     container_name: csust-planet-share
     ports:
       - "4321:4321"
     volumes:
       - ./config/config.json:/app/config/config.json
     restart: unless-stopped
+    environment:
+      - CONFIG_UPDATE_TOKEN=your-strong-token
