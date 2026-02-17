@@ -1,17 +1,407 @@
 ---
 import "../styles/global.css";
+import { ArrowRight, ChevronDown } from "@lucide/astro";
+import {
+  ExternalLink,
+  Server,
+  CodeXml,
+  FilePenLine,
+  Rocket,
+} from "@lucide/astro";
+import {
+  siAndroid,
+  siApple,
+  siSwift,
+  siGithub,
+  siAppstore,
+} from "simple-icons";
 ---
 
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>长理星球</title>
   </head>
-  <body>
-    <h1>Astro</h1>
+  <body class="min-h-screen bg-zinc-50 text-zinc-900 antialiased">
+    <header
+      class="fixed inset-x-0 top-0 z-50 border-b border-zinc-200/70 bg-white/80 backdrop-blur-xl"
+    >
+      <div
+        class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6"
+      >
+        <div class="flex items-center gap-3.5">
+          <img
+            src="/logo_transparent.png"
+            alt="长理星球 Logo"
+            class="h-11 w-11 object-contain"
+          />
+          <span class="text-xl font-semibold tracking-tight text-zinc-900"
+            >长理星球</span
+          >
+        </div>
+        <a
+          href="#install-options"
+          class="inline-flex h-10 items-center justify-center gap-1.5 rounded-full bg-blue-600 px-5 text-sm font-medium text-white transition hover:bg-blue-700"
+        >
+          立即安装
+          <ArrowRight class="h-4 w-4" aria-hidden="true" />
+        </a>
+      </div>
+    </header>
+
+    <main class="flex min-h-screen flex-col">
+      <section
+        class="flex h-screen items-center justify-center bg-gradient-to-b from-zinc-50 via-white to-zinc-100 px-6 py-16 text-center text-zinc-900"
+      >
+        <div class="flex max-w-3xl flex-col items-center">
+          <img
+            src="/logo_transparent.png"
+            alt="长理星球"
+            class="mb-7 h-44 w-44 rounded-3xl object-contain ring-1 ring-zinc-200 shadow-xl shadow-zinc-300/40"
+          />
+          <h1 class="text-5xl font-semibold tracking-tight sm:text-7xl">
+            长理星球
+          </h1>
+          <p class="mt-5 max-w-2xl text-xl text-zinc-600 sm:text-2xl">
+            你的校园生活，从未如此简单。
+          </p>
+          <a
+            href="#install-options"
+            class="mt-10 inline-flex h-14 items-center justify-center gap-2 rounded-full bg-blue-600 px-10 text-lg font-semibold text-white transition hover:bg-blue-700"
+          >
+            立即安装
+            <ChevronDown class="h-6 w-6" aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+
+      <section id="install-options" class="w-full bg-white py-24 md:py-32">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="mb-14 text-center md:mb-16">
+            <h2
+              class="text-4xl font-semibold tracking-tight text-zinc-900 md:text-6xl"
+            >
+              安装方式
+            </h2>
+            <p class="mx-auto mt-5 max-w-3xl text-xl text-zinc-600 md:text-2xl">
+              选择最适合你的方式，快速安装长理星球。
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-7 md:grid-cols-3">
+            <a
+              href="https://apps.apple.com/zh/app/%E9%95%BF%E7%90%86%E6%98%9F%E7%90%83/id6748840801"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-zinc-50/70 p-8 transition duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-200/60"
+            >
+              <div class="mb-5 flex items-center gap-4">
+                <div
+                  class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-900 text-white"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-7 w-7"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d={siAppstore.path}></path>
+                  </svg>
+                </div>
+                <h3 class="text-2xl font-semibold tracking-tight text-zinc-900">
+                  App Store
+                </h3>
+              </div>
+              <p class="text-lg text-zinc-600">
+                通过 App Store 下载并安装 iOS 正式版。
+              </p>
+              <span
+                class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-600"
+              >
+                前往 App Store
+                <ExternalLink class="h-4 w-4" aria-hidden="true" />
+              </span>
+            </a>
+
+            <a
+              href="https://testflight.apple.com/join/xMbzN8aU"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-zinc-50/70 p-8 transition duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-200/60"
+            >
+              <div class="mb-5 flex items-center gap-4">
+                <div
+                  class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-sky-50"
+                >
+                  <Rocket class="h-7 w-7 text-sky-600" aria-hidden="true" />
+                </div>
+                <h3 class="text-2xl font-semibold tracking-tight text-zinc-900">
+                  TestFlight
+                </h3>
+              </div>
+              <p class="text-lg text-zinc-600">
+                加入 TestFlight，抢先体验 iOS 测试版本。
+              </p>
+              <span
+                class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-600"
+              >
+                加入 TestFlight
+                <ExternalLink class="h-4 w-4" aria-hidden="true" />
+              </span>
+            </a>
+
+            <a
+              href="https://csustplant.obs.cn-south-1.myhuaweicloud.com/builds/release/18365022232_clPlanetApp_release_v1.2.3.apk"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-zinc-50/70 p-8 transition duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-200/60"
+            >
+              <div class="mb-5 flex items-center gap-4">
+                <div
+                  class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-50"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-7 w-7 text-emerald-600"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d={siAndroid.path}></path>
+                  </svg>
+                </div>
+                <h3 class="text-2xl font-semibold tracking-tight text-zinc-900">
+                  Android
+                </h3>
+              </div>
+              <p class="text-lg text-zinc-600">
+                下载 Android APK 安装包，直接完成安装。
+              </p>
+              <span
+                class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-600"
+              >
+                下载 Android APK
+                <ExternalLink class="h-4 w-4" aria-hidden="true" />
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="w-full border-y border-zinc-200/70 bg-white/70 py-20 md:py-28"
+      >
+        <div class="mx-auto max-w-6xl px-6">
+          <div class="mb-14 text-center md:mb-16">
+            <h2
+              class="text-3xl font-semibold tracking-tight text-zinc-900 md:text-5xl"
+            >
+              开源共建
+            </h2>
+            <p class="mx-auto mt-5 max-w-2xl text-lg text-zinc-600 md:text-xl">
+              来自
+              <a
+                href="https://github.com/CreaMakers"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mx-1 inline-flex items-center gap-1 font-medium text-blue-600 hover:underline"
+              >
+                CreaMakers
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-4 w-4"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d={siGithub.path}></path>
+                </svg>
+              </a>
+              组织下的开源项目，欢迎贡献。
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <a
+              href="https://github.com/CreaMakers/changli-planet-app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50"
+            >
+              <div class="mb-4 inline-flex rounded-2xl bg-emerald-50/80 p-3">
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-7 w-7 text-emerald-500"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d={siAndroid.path}></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight text-zinc-900">
+                Android App
+              </h3>
+              <p class="mt-2 text-zinc-600">长理星球 Android 客户端源码。</p>
+              <span
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+              >
+                查看项目
+                <ExternalLink class="h-4 w-4" aria-hidden="true" />
+              </span>
+            </a>
+
+            <a
+              href="https://github.com/CreaMakers/changli-planet-backend"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50"
+            >
+              <div class="mb-4 inline-flex rounded-2xl bg-indigo-50/80 p-3">
+                <Server class="h-7 w-7 text-indigo-500" aria-hidden="true" />
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight text-zinc-900">
+                Android Backend
+              </h3>
+              <p class="mt-2 text-zinc-600">Android 端配套后端服务。</p>
+              <span
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+              >
+                查看项目
+                <ExternalLink class="h-4 w-4" aria-hidden="true" />
+              </span>
+            </a>
+
+            <a
+              href="https://github.com/CreaMakers/CSUSTDataGet"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50"
+            >
+              <div class="mb-4 inline-flex rounded-2xl bg-amber-50/80 p-3">
+                <CodeXml class="h-7 w-7 text-amber-500" aria-hidden="true" />
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight text-zinc-900">
+                CSUSTDataGet
+              </h3>
+              <p class="mt-2 text-zinc-600">Android 端核心网络数据获取库。</p>
+              <span
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+              >
+                查看项目
+                <ExternalLink class="h-4 w-4" aria-hidden="true" />
+              </span>
+            </a>
+
+            <a
+              href="https://github.com/zHElEARN/CSUSTPlanet"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50"
+            >
+              <div class="mb-4 inline-flex rounded-2xl bg-zinc-100/90 p-3">
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-7 w-7 text-zinc-900"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d={siApple.path}></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight text-zinc-900">
+                iOS App
+              </h3>
+              <p class="mt-2 text-zinc-600">长理星球 iOS 客户端源码。</p>
+              <span
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+              >
+                查看项目
+                <ExternalLink class="h-4 w-4" aria-hidden="true" />
+              </span>
+            </a>
+
+            <a
+              href="https://github.com/zHElEARN/CSUSTPlanetBackend"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50"
+            >
+              <div class="mb-4 inline-flex rounded-2xl bg-indigo-50/80 p-3">
+                <Server class="h-7 w-7 text-indigo-500" aria-hidden="true" />
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight text-zinc-900">
+                iOS Backend
+              </h3>
+              <p class="mt-2 text-zinc-600">iOS 端配套后端服务。</p>
+              <span
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+              >
+                查看项目
+                <ExternalLink class="h-4 w-4" aria-hidden="true" />
+              </span>
+            </a>
+
+            <a
+              href="https://github.com/zHElEARN/CSUSTKit"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50"
+            >
+              <div class="mb-4 inline-flex rounded-2xl bg-rose-50/80 p-3">
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-7 w-7 text-rose-500"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d={siSwift.path}></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight text-zinc-900">
+                CSUSTKit
+              </h3>
+              <p class="mt-2 text-zinc-600">iOS 端核心网络 SDK。</p>
+              <span
+                class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+              >
+                查看项目
+                <ExternalLink class="h-4 w-4" aria-hidden="true" />
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full bg-zinc-50 py-20 md:py-24">
+        <div class="mx-auto max-w-4xl px-6 text-center">
+          <h2
+            class="text-3xl font-semibold tracking-tight text-zinc-900 md:text-5xl"
+          >
+            加入我们
+          </h2>
+          <p class="mx-auto mt-5 max-w-3xl text-lg text-zinc-600 md:text-xl">
+            如果你对技术充满热情，希望为校园生活带来改变，欢迎加入 CreaMakers
+            团队。
+          </p>
+          <a
+            href="https://creamaker.feishu.cn/share/base/form/shrcnOIl2W9rBAcEYYrK12l6Ffd"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-9 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-blue-600 px-8 text-base font-semibold text-white transition hover:bg-blue-700"
+          >
+            填写加入表单
+            <FilePenLine class="h-5 w-5" aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+
+      <footer
+        class="border-t border-zinc-200 bg-white py-5 text-center text-sm text-zinc-500"
+      >
+        © 2024-2026 CreaMakers
+      </footer>
+    </main>
   </body>
 </html>
