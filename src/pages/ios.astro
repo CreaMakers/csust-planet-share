@@ -32,11 +32,11 @@ const previewImageUrl = new URL("/logo_transparent.png", Astro.url).href;
     <meta name="twitter:image" content={previewImageUrl} />
   </Fragment>
 
-  <section class="flex min-h-[calc(100vh-5rem)] items-center justify-center bg-gradient-to-b from-zinc-50 via-white to-zinc-100 px-6 py-16 text-center text-zinc-900 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 dark:text-zinc-100">
+  <section class="flex min-h-[calc(100vh-5rem)] items-center justify-center bg-gradient-to-b from-zinc-50 via-white to-zinc-100 px-6 py-16 text-center text-zinc-900">
     <div class="flex max-w-3xl flex-col items-center">
-      <img src="/logo_transparent.png" alt="长理星球" class="mb-7 h-44 w-44 rounded-3xl object-contain ring-1 ring-zinc-200 shadow-xl shadow-zinc-300/40 dark:ring-zinc-700 dark:shadow-zinc-950/60" />
+      <img src="/logo_transparent.png" alt="长理星球" class="mb-7 h-44 w-44 rounded-3xl object-contain ring-1 ring-zinc-200 shadow-xl shadow-zinc-300/40" />
       <h1 class="text-5xl font-semibold tracking-tight sm:text-7xl">长理星球</h1>
-      <p class="mt-5 max-w-2xl text-xl text-zinc-600 dark:text-zinc-300 sm:text-2xl">你的校园生活，从未如此简单。</p>
+      <p class="mt-5 max-w-2xl text-xl text-zinc-600 sm:text-2xl">你的校园生活，从未如此简单。</p>
       <a href="#install-options" class="mt-10 inline-flex h-14 items-center justify-center gap-2 rounded-full bg-blue-600 px-10 text-lg font-semibold text-white hover:bg-blue-700">
         立即安装
         <ChevronDown class="h-6 w-6" aria-hidden="true" />
@@ -44,39 +44,39 @@ const previewImageUrl = new URL("/logo_transparent.png", Astro.url).href;
     </div>
   </section>
 
-  <section id="install-options" class="w-full bg-white py-24 dark:bg-zinc-950 md:py-32">
+  <section id="install-options" class="w-full bg-white py-24 md:py-32">
     <div class="mx-auto max-w-7xl px-6">
       <div class="mb-14 text-center md:mb-16">
-        <h2 class="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 md:text-6xl">安装方式</h2>
-        <p class="mx-auto mt-5 max-w-3xl text-xl text-zinc-600 dark:text-zinc-300 md:text-2xl">选择最适合你的方式，快速安装长理星球。</p>
+        <h2 class="text-4xl font-semibold tracking-tight text-zinc-900 md:text-6xl">安装方式</h2>
+        <p class="mx-auto mt-5 max-w-3xl text-xl text-zinc-600 md:text-2xl">选择最适合你的方式，快速安装长理星球。</p>
       </div>
 
       <div class="grid grid-cols-1 gap-7 md:grid-cols-2">
-        <a href="https://apps.apple.com/zh/app/%E9%95%BF%E7%90%86%E6%98%9F%E7%90%83/id6748840801" target="_blank" rel="noopener noreferrer" class="group flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-zinc-50/70 p-8 transition duration-200 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-200/60 dark:border-zinc-800 dark:bg-zinc-900/70 dark:hover:border-zinc-700 dark:hover:shadow-zinc-950/80">
+        <a href="https://apps.apple.com/zh/app/%E9%95%BF%E7%90%86%E6%98%9F%E7%90%83/id6748840801" target="_blank" rel="noopener noreferrer" class="group flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-zinc-50/70 p-8 transition duration-200 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-200/60">
           <div class="mb-5 flex items-center gap-4">
             <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-900 text-white">
               <svg viewBox="0 0 24 24" class="h-7 w-7" fill="currentColor" aria-hidden="true">
                 <path d={siAppstore.path}></path>
               </svg>
             </div>
-            <h3 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">App Store</h3>
+            <h3 class="text-2xl font-semibold tracking-tight text-zinc-900">App Store</h3>
           </div>
-          <p class="text-lg text-zinc-600 dark:text-zinc-300">通过 App Store 下载并安装 iOS 正式版。</p>
-          <span class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-700 dark:text-blue-400">
+          <p class="text-lg text-zinc-600">通过 App Store 下载并安装 iOS 正式版。</p>
+          <span class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-700">
             前往 App Store
             <ExternalLink class="h-4 w-4" aria-hidden="true" />
           </span>
         </a>
 
-        <a href="https://testflight.apple.com/join/xMbzN8aU" target="_blank" rel="noopener noreferrer" class="group flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-zinc-50/70 p-8 transition duration-200 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-200/60 dark:border-zinc-800 dark:bg-zinc-900/70 dark:hover:border-zinc-700 dark:hover:shadow-zinc-950/80">
+        <a href="https://testflight.apple.com/join/xMbzN8aU" target="_blank" rel="noopener noreferrer" class="group flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-zinc-50/70 p-8 transition duration-200 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-200/60">
           <div class="mb-5 flex items-center gap-4">
-            <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-sky-50 dark:bg-sky-500/20">
+            <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-sky-50">
               <Rocket class="h-7 w-7 text-sky-600" aria-hidden="true" />
             </div>
-            <h3 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">TestFlight</h3>
+            <h3 class="text-2xl font-semibold tracking-tight text-zinc-900">TestFlight</h3>
           </div>
-          <p class="text-lg text-zinc-600 dark:text-zinc-300">加入 TestFlight，抢先体验 iOS 测试版本。</p>
-          <span class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-700 dark:text-blue-400">
+          <p class="text-lg text-zinc-600">加入 TestFlight，抢先体验 iOS 测试版本。</p>
+          <span class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-700">
             加入 TestFlight
             <ExternalLink class="h-4 w-4" aria-hidden="true" />
           </span>
@@ -85,13 +85,13 @@ const previewImageUrl = new URL("/logo_transparent.png", Astro.url).href;
     </div>
   </section>
 
-  <section class="w-full border-y border-zinc-200/70 bg-white/70 py-20 dark:border-zinc-800 dark:bg-zinc-900/60 md:py-28">
+  <section class="w-full border-y border-zinc-200/70 bg-white/70 py-20 md:py-28">
     <div class="mx-auto max-w-6xl px-6">
       <div class="mb-14 text-center md:mb-16">
-        <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 md:text-5xl">开源共建</h2>
-        <p class="mx-auto mt-5 max-w-2xl text-lg text-zinc-600 dark:text-zinc-300 md:text-xl">
+        <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 md:text-5xl">开源共建</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-lg text-zinc-600 md:text-xl">
           来自
-          <a href="https://github.com/CreaMakers" target="_blank" rel="noopener noreferrer" class="mx-1 inline-flex items-center gap-1 font-medium text-blue-700 hover:underline dark:text-blue-400">
+          <a href="https://github.com/CreaMakers" target="_blank" rel="noopener noreferrer" class="mx-1 inline-flex items-center gap-1 font-medium text-blue-700 hover:underline">
             CreaMakers
             <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
               <path d={siGithub.path}></path>
@@ -102,41 +102,41 @@ const previewImageUrl = new URL("/logo_transparent.png", Astro.url).href;
       </div>
 
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <a href="https://github.com/zHElEARN/CSUSTPlanet" target="_blank" rel="noopener noreferrer" class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50 dark:border-zinc-800 dark:bg-zinc-900/80 dark:hover:border-zinc-700 dark:hover:shadow-zinc-950/80">
-          <div class="mb-4 inline-flex rounded-2xl bg-zinc-100/90 p-3 dark:bg-zinc-700/70">
-            <svg viewBox="0 0 24 24" class="h-7 w-7 text-zinc-900 dark:text-zinc-100" fill="currentColor" aria-hidden="true">
+        <a href="https://github.com/zHElEARN/CSUSTPlanet" target="_blank" rel="noopener noreferrer" class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50">
+          <div class="mb-4 inline-flex rounded-2xl bg-zinc-100/90 p-3">
+            <svg viewBox="0 0 24 24" class="h-7 w-7 text-zinc-900" fill="currentColor" aria-hidden="true">
               <path d={siApple.path}></path>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">iOS App</h3>
-          <p class="mt-2 text-zinc-600 dark:text-zinc-300">长理星球 iOS 客户端源码。</p>
-          <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700 dark:text-blue-400">
+          <h3 class="text-xl font-semibold tracking-tight text-zinc-900">iOS App</h3>
+          <p class="mt-2 text-zinc-600">长理星球 iOS 客户端源码。</p>
+          <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700">
             查看项目
             <ExternalLink class="h-4 w-4" aria-hidden="true" />
           </span>
         </a>
 
-        <a href="https://github.com/zHElEARN/CSUSTPlanetBackend" target="_blank" rel="noopener noreferrer" class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50 dark:border-zinc-800 dark:bg-zinc-900/80 dark:hover:border-zinc-700 dark:hover:shadow-zinc-950/80">
-          <div class="mb-4 inline-flex rounded-2xl bg-indigo-50/80 p-3 dark:bg-indigo-500/20">
+        <a href="https://github.com/zHElEARN/CSUSTPlanetBackend" target="_blank" rel="noopener noreferrer" class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50">
+          <div class="mb-4 inline-flex rounded-2xl bg-indigo-50/80 p-3">
             <Server class="h-7 w-7 text-indigo-500" aria-hidden="true" />
           </div>
-          <h3 class="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">iOS Backend</h3>
-          <p class="mt-2 text-zinc-600 dark:text-zinc-300">iOS 端配套后端服务。</p>
-          <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700 dark:text-blue-400">
+          <h3 class="text-xl font-semibold tracking-tight text-zinc-900">iOS Backend</h3>
+          <p class="mt-2 text-zinc-600">iOS 端配套后端服务。</p>
+          <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700">
             查看项目
             <ExternalLink class="h-4 w-4" aria-hidden="true" />
           </span>
         </a>
 
-        <a href="https://github.com/zHElEARN/CSUSTKit" target="_blank" rel="noopener noreferrer" class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50 dark:border-zinc-800 dark:bg-zinc-900/80 dark:hover:border-zinc-700 dark:hover:shadow-zinc-950/80">
-          <div class="mb-4 inline-flex rounded-2xl bg-rose-50/80 p-3 dark:bg-rose-500/20">
+        <a href="https://github.com/zHElEARN/CSUSTKit" target="_blank" rel="noopener noreferrer" class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50">
+          <div class="mb-4 inline-flex rounded-2xl bg-rose-50/80 p-3">
             <svg viewBox="0 0 24 24" class="h-7 w-7 text-rose-500" fill="currentColor" aria-hidden="true">
               <path d={siSwift.path}></path>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">CSUSTKit</h3>
-          <p class="mt-2 text-zinc-600 dark:text-zinc-300">iOS 端核心网络 SDK。</p>
-          <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700 dark:text-blue-400">
+          <h3 class="text-xl font-semibold tracking-tight text-zinc-900">CSUSTKit</h3>
+          <p class="mt-2 text-zinc-600">iOS 端核心网络 SDK。</p>
+          <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700">
             查看项目
             <ExternalLink class="h-4 w-4" aria-hidden="true" />
           </span>
@@ -145,10 +145,10 @@ const previewImageUrl = new URL("/logo_transparent.png", Astro.url).href;
     </div>
   </section>
 
-  <section class="w-full bg-zinc-50 py-20 dark:bg-zinc-900 md:py-24">
+  <section class="w-full bg-zinc-50 py-20 md:py-24">
     <div class="mx-auto max-w-4xl px-6 text-center">
-      <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 md:text-5xl">加入我们</h2>
-      <p class="mx-auto mt-5 max-w-3xl text-lg text-zinc-600 dark:text-zinc-300 md:text-xl">如果你对技术充满热情，希望为校园生活带来改变，欢迎加入 CreaMakers 团队。</p>
+      <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 md:text-5xl">加入我们</h2>
+      <p class="mx-auto mt-5 max-w-3xl text-lg text-zinc-600 md:text-xl">如果你对技术充满热情，希望为校园生活带来改变，欢迎加入 CreaMakers 团队。</p>
       <a href="https://creamaker.feishu.cn/share/base/form/shrcnOIl2W9rBAcEYYrK12l6Ffd" target="_blank" rel="noopener noreferrer" class="mt-9 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-blue-600 px-8 text-base font-semibold text-white hover:bg-blue-700">
         填写加入表单
         <FilePenLine class="h-5 w-5" aria-hidden="true" />
