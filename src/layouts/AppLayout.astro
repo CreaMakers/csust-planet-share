@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { title = "长理星球", description = "长理星球官方页面" } = Astro.props;
+const hasHeaderActions = Astro.slots.has("header-actions");
 ---
 
 <html lang="zh-CN" class="h-full">
@@ -22,11 +23,18 @@ const { title = "长理星球", description = "长理星球官方页面" } = Ast
   <body class="min-h-screen bg-zinc-50 text-zinc-900 antialiased">
     <div class="flex min-h-screen flex-col">
       <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-6">
-        <div class="mx-auto flex h-16 w-full max-w-5xl items-center rounded-2xl border border-zinc-200/80 bg-white/75 px-4 shadow-sm shadow-zinc-200/40 backdrop-blur-md">
+        <div class="mx-auto flex h-16 w-full max-w-[90rem] items-center justify-between gap-4 rounded-2xl border border-zinc-200/80 bg-white/75 px-4 shadow-sm shadow-zinc-200/40 backdrop-blur-md">
           <a href="/" class="inline-flex items-center gap-3">
             <img src="/logo_transparent.png" alt="长理星球 Logo" class="h-10 w-10 object-contain" />
             <span class="text-lg font-semibold tracking-tight sm:text-xl"> 长理星球 </span>
           </a>
+          {
+            hasHeaderActions && (
+              <div class="flex shrink-0 items-center">
+                <slot name="header-actions" />
+              </div>
+            )
+          }
         </div>
       </header>
 
@@ -34,7 +42,9 @@ const { title = "长理星球", description = "长理星球官方页面" } = Ast
         <slot />
       </main>
 
-      <footer class="border-t border-zinc-200/80 bg-white/80 py-5 text-center text-sm text-zinc-500 backdrop-blur-md">&copy; 2024-2026 CreaMakers</footer>
+      <footer class="border-t border-zinc-200/80 bg-white/80 py-5 text-sm text-zinc-500 backdrop-blur-md">
+        <div class="mx-auto w-full max-w-[90rem] px-4 text-center sm:px-6">&copy; 2024-2026 CreaMakers</div>
+      </footer>
     </div>
   </body>
 </html>

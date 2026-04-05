@@ -8,6 +8,115 @@ const pageTitle = "长理星球";
 const pageDescription = "长理星球 iOS 版本安装与开源项目入口。";
 const pageUrl = Astro.url.href;
 const previewImageUrl = new URL("/logo_transparent.png", Astro.url).href;
+const featurePlatforms = [
+  {
+    id: "iphone",
+    label: "iPhone",
+    imageClass: "max-h-[calc(100vh-8rem)] w-auto max-w-[20rem]",
+  },
+  {
+    id: "ipad",
+    label: "iPad",
+    imageClass: "max-h-[calc(100vh-9rem)] w-auto max-w-full",
+  },
+  {
+    id: "mac",
+    label: "Mac",
+    imageClass: "max-h-[calc(100vh-9rem)] w-auto max-w-full",
+  },
+] as const;
+
+type FeaturePlatformId = (typeof featurePlatforms)[number]["id"];
+type FeatureSlide = {
+  title: string;
+  description: string;
+  images: Record<FeaturePlatformId, string>;
+};
+
+const featureSlides: FeatureSlide[] = [
+  {
+    title: "概览",
+    description: "快速查看课程、成绩、电量和作业等",
+    images: {
+      iphone: "/Apple/iPhone/1.png",
+      ipad: "/Apple/iPad/1.png",
+      mac: "/Apple/Mac/1.png",
+    },
+  },
+  {
+    title: "小组件",
+    description: "在桌面直接查看各个数据",
+    images: {
+      iphone: "/Apple/iPhone/2.png",
+      ipad: "/Apple/iPad/2.png",
+      mac: "/Apple/Mac/2.png",
+    },
+  },
+  {
+    title: "我的课表",
+    description: "自动导入教务系统课表数据",
+    images: {
+      iphone: "/Apple/iPhone/3.png",
+      ipad: "/Apple/iPad/3.png",
+      mac: "/Apple/Mac/3.png",
+    },
+  },
+  {
+    title: "成绩查询",
+    description: "查询教务系统的所有成绩",
+    images: {
+      iphone: "/Apple/iPhone/4.png",
+      ipad: "/Apple/iPad/4.png",
+      mac: "/Apple/Mac/4.png",
+    },
+  },
+  {
+    title: "成绩详细",
+    description: "深入查看成绩具体组成分布",
+    images: {
+      iphone: "/Apple/iPhone/5.png",
+      ipad: "/Apple/iPad/5.png",
+      mac: "/Apple/Mac/5.png",
+    },
+  },
+  {
+    title: "电量查询",
+    description: "绑定宿舍快速查询当前电量",
+    images: {
+      iphone: "/Apple/iPhone/6.png",
+      ipad: "/Apple/iPad/6.png",
+      mac: "/Apple/Mac/6.png",
+    },
+  },
+  {
+    title: "待提交作业",
+    description: "查询网络课程平台所有的待提交作业",
+    images: {
+      iphone: "/Apple/iPhone/7.png",
+      ipad: "/Apple/iPad/7.png",
+      mac: "/Apple/Mac/7.png",
+    },
+  },
+  {
+    title: "校园地图",
+    description: "快速查看各个校区教学楼等楼栋位置",
+    images: {
+      iphone: "/Apple/iPhone/8.png",
+      ipad: "/Apple/iPad/8.png",
+      mac: "/Apple/Mac/8.png",
+    },
+  },
+  {
+    title: "考试安排",
+    description: "查询教务系统的所有考试信息",
+    images: {
+      iphone: "/Apple/iPhone/9.png",
+      ipad: "/Apple/iPad/9.png",
+      mac: "/Apple/Mac/9.png",
+    },
+  },
+];
+const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
 ---
 
 <AppLayout title={pageTitle} description={pageDescription}>
@@ -32,20 +141,69 @@ const previewImageUrl = new URL("/logo_transparent.png", Astro.url).href;
     <meta name="twitter:image" content={previewImageUrl} />
   </Fragment>
 
-  <section class="flex min-h-[calc(100vh-5rem)] items-center justify-center bg-gradient-to-b from-zinc-50 via-white to-zinc-100 px-6 py-16 text-center text-zinc-900">
-    <div class="flex max-w-3xl flex-col items-center">
-      <img src="/logo_transparent.png" alt="长理星球" class="mb-7 h-44 w-44 rounded-3xl object-contain ring-1 ring-zinc-200 shadow-xl shadow-zinc-300/40" />
-      <h1 class="text-5xl font-semibold tracking-tight sm:text-7xl">长理星球</h1>
-      <p class="mt-5 max-w-2xl text-xl text-zinc-600 sm:text-2xl">你的校园生活，从未如此简单。</p>
-      <a href="#install-options" class="mt-10 inline-flex h-14 items-center justify-center gap-2 rounded-full bg-blue-600 px-10 text-lg font-semibold text-white hover:bg-blue-700">
-        立即安装
-        <ChevronDown class="h-6 w-6" aria-hidden="true" />
-      </a>
+  <a id="topbar-install-cta" slot="header-actions" href="#install-options" aria-hidden="true" tabindex="-1" class="pointer-events-none inline-flex h-10 items-center justify-center rounded-full bg-blue-600 px-4 text-sm font-semibold text-white opacity-0 shadow-sm shadow-blue-200/70 transition-opacity duration-300 ease-out hover:bg-blue-700 sm:h-11 sm:px-5 sm:text-base"> 立即安装 </a>
+
+  <section class="bg-gradient-to-b from-zinc-50 via-white to-zinc-100 text-center text-zinc-900">
+    <div class="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-[90rem] items-center justify-center px-4 py-16 sm:px-6">
+      <div class="flex w-full max-w-6xl flex-col items-center">
+        <h1 class="flex flex-wrap items-baseline justify-center gap-x-4 gap-y-2 text-5xl font-semibold tracking-tight sm:gap-x-5 sm:text-7xl">
+          <span>长理星球</span>
+          <span class="bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 bg-clip-text text-4xl text-transparent sm:text-6xl">for Apple</span>
+        </h1>
+        <p class="mt-5 max-w-3xl text-xl text-zinc-600 sm:text-2xl">课表、成绩、电量与校园工具，多端原生的高效校园助手</p>
+        <img src="/Apple/Family.png" alt="长理星球 iOS 页面展示图" class="mt-10 w-full max-w-5xl object-contain" />
+        <a id="hero-install-cta" href="#install-options" class="mt-10 inline-flex h-14 items-center justify-center gap-2 rounded-full bg-blue-600 px-10 text-lg font-semibold text-white hover:bg-blue-700">
+          立即安装
+          <ChevronDown class="h-6 w-6" aria-hidden="true" />
+        </a>
+      </div>
     </div>
   </section>
 
-  <section id="install-options" class="w-full bg-white py-24 md:py-32">
-    <div class="mx-auto max-w-7xl px-6">
+  <section id="ios-feature-showcase" class="relative hidden bg-white lg:block" style={`height: ${featureSectionHeight};`}>
+    <div class="sticky top-0 box-border h-screen px-4 pt-24 sm:px-6 sm:pt-28">
+      <div class="mx-auto flex h-full w-full max-w-[90rem] items-center gap-12">
+        <div class="flex h-full w-[24rem] shrink-0 flex-col justify-center">
+          <div class="relative min-h-[18rem]">
+            {
+              featureSlides.map((slide, index) => (
+                <article data-feature-copy aria-hidden={index === 0 ? "false" : "true"} class:list={["absolute inset-0 flex max-w-xl flex-col justify-center transition-opacity duration-500 ease-out", index === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
+                  <p class="text-sm font-semibold uppercase tracking-[0.28em] text-blue-600">FEATURE {String(index + 1).padStart(2, "0")}</p>
+                  <h2 class="mt-5 text-5xl font-semibold tracking-tight text-zinc-900">{slide.title}</h2>
+                  <p class="mt-6 text-2xl leading-relaxed text-zinc-600">{slide.description}</p>
+                </article>
+              ))
+            }
+          </div>
+
+          <div class="relative mt-10 inline-flex w-fit rounded-full border border-zinc-200/80 bg-zinc-100/90 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] shadow-zinc-200/70">
+            <span id="feature-platform-indicator" aria-hidden="true" class="absolute left-1 top-1 h-11 w-24 rounded-full bg-white shadow-[0_8px_18px_rgba(15,23,42,0.12)] transition-transform duration-300 ease-out xl:w-28"></span>
+            {
+              featurePlatforms.map((platform, index) => (
+                <button type="button" data-feature-platform-button data-platform={platform.id} data-platform-index={index} aria-pressed={index === 0 ? "true" : "false"} class:list={["relative z-10 inline-flex h-11 w-24 items-center justify-center rounded-full text-base font-medium transition-colors duration-300 xl:w-28", index === 0 ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"]}>
+                  {platform.label}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+        <div class="relative h-full min-w-0 flex-1">
+          {
+            featureSlides.map((slide, slideIndex) =>
+              featurePlatforms.map((platform, platformIndex) => (
+                <div data-feature-visual data-slide-index={slideIndex} data-platform={platform.id} aria-hidden={slideIndex === 0 && platformIndex === 0 ? "false" : "true"} class:list={["absolute inset-0 flex items-center justify-end transition-opacity duration-500 ease-out", slideIndex === 0 && platformIndex === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
+                  <img src={slide.images[platform.id]} alt={`${slide.title}${platform.label}界面`} class:list={["object-contain", platform.imageClass]} />
+                </div>
+              )),
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="install-options" class="w-full bg-gradient-to-b from-zinc-50 via-white to-zinc-100 py-24 md:py-32">
+    <div class="mx-auto w-full max-w-[90rem] px-4 sm:px-6">
       <div class="mb-14 text-center md:mb-16">
         <h2 class="text-4xl font-semibold tracking-tight text-zinc-900 md:text-6xl">安装方式</h2>
         <p class="mx-auto mt-5 max-w-3xl text-xl text-zinc-600 md:text-2xl">选择最适合你的方式，快速安装长理星球。</p>
@@ -86,7 +244,7 @@ const previewImageUrl = new URL("/logo_transparent.png", Astro.url).href;
   </section>
 
   <section class="w-full border-y border-zinc-200/70 bg-white/70 py-20 md:py-28">
-    <div class="mx-auto max-w-6xl px-6">
+    <div class="mx-auto w-full max-w-[90rem] px-4 sm:px-6">
       <div class="mb-14 text-center md:mb-16">
         <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 md:text-5xl">开源共建</h2>
         <p class="mx-auto mt-5 max-w-2xl text-lg text-zinc-600 md:text-xl">
@@ -146,13 +304,149 @@ const previewImageUrl = new URL("/logo_transparent.png", Astro.url).href;
   </section>
 
   <section class="w-full bg-zinc-50 py-20 md:py-24">
-    <div class="mx-auto max-w-4xl px-6 text-center">
-      <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 md:text-5xl">加入我们</h2>
-      <p class="mx-auto mt-5 max-w-3xl text-lg text-zinc-600 md:text-xl">如果你对技术充满热情，希望为校园生活带来改变，欢迎加入 CreaMakers 团队。</p>
-      <a href="https://creamaker.feishu.cn/share/base/form/shrcnOIl2W9rBAcEYYrK12l6Ffd" target="_blank" rel="noopener noreferrer" class="mt-9 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-blue-600 px-8 text-base font-semibold text-white hover:bg-blue-700">
-        填写加入表单
-        <FilePenLine class="h-5 w-5" aria-hidden="true" />
-      </a>
+    <div class="mx-auto w-full max-w-[90rem] px-4 sm:px-6">
+      <div class="mx-auto max-w-4xl text-center">
+        <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 md:text-5xl">加入我们</h2>
+        <p class="mx-auto mt-5 max-w-3xl text-lg text-zinc-600 md:text-xl">如果你对技术充满热情，希望为校园生活带来改变，欢迎加入 CreaMakers 团队。</p>
+        <a href="https://creamaker.feishu.cn/share/base/form/shrcnOIl2W9rBAcEYYrK12l6Ffd" target="_blank" rel="noopener noreferrer" class="mt-9 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-blue-600 px-8 text-base font-semibold text-white hover:bg-blue-700">
+          填写加入表单
+          <FilePenLine class="h-5 w-5" aria-hidden="true" />
+        </a>
+      </div>
     </div>
   </section>
+
+  <script is:inline>
+    const heroInstallButton = document.getElementById("hero-install-cta");
+    const topbarInstallButton = document.getElementById("topbar-install-cta");
+    const featureShowcase = document.getElementById("ios-feature-showcase");
+    const featureCopies = Array.from(document.querySelectorAll("[data-feature-copy]"));
+    const featureVisuals = Array.from(document.querySelectorAll("[data-feature-visual]"));
+    const featurePlatformButtons = Array.from(document.querySelectorAll("[data-feature-platform-button]"));
+    const featurePlatformIndicator = document.getElementById("feature-platform-indicator");
+
+    if (heroInstallButton instanceof HTMLElement && topbarInstallButton instanceof HTMLElement) {
+      const setTopbarVisible = (visible) => {
+        topbarInstallButton.classList.toggle("pointer-events-none", !visible);
+        topbarInstallButton.classList.toggle("opacity-0", !visible);
+        topbarInstallButton.classList.toggle("pointer-events-auto", visible);
+        topbarInstallButton.classList.toggle("opacity-100", visible);
+        topbarInstallButton.setAttribute("aria-hidden", String(!visible));
+
+        if (visible) {
+          topbarInstallButton.removeAttribute("tabindex");
+        } else {
+          topbarInstallButton.setAttribute("tabindex", "-1");
+        }
+      };
+
+      setTopbarVisible(false);
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setTopbarVisible(!entry?.isIntersecting);
+        },
+        { threshold: 0 },
+      );
+
+      observer.observe(heroInstallButton);
+    }
+
+    if (featureShowcase instanceof HTMLElement && featureCopies.length > 0 && featureVisuals.length > 0) {
+      let activeSlideIndex = -1;
+      let activePlatform = "iphone";
+      let ticking = false;
+
+      const updateFeatureCopies = () => {
+        featureCopies.forEach((element, index) => {
+          const isActive = index === activeSlideIndex;
+          element.classList.toggle("pointer-events-none", !isActive);
+          element.classList.toggle("opacity-0", !isActive);
+          element.classList.toggle("opacity-100", isActive);
+          element.setAttribute("aria-hidden", String(!isActive));
+        });
+      };
+
+      const updateFeatureVisuals = () => {
+        featureVisuals.forEach((element, index) => {
+          const isActive = Number(element.getAttribute("data-slide-index")) === activeSlideIndex && element.getAttribute("data-platform") === activePlatform;
+          element.classList.toggle("pointer-events-none", !isActive);
+          element.classList.toggle("opacity-0", !isActive);
+          element.classList.toggle("opacity-100", isActive);
+          element.setAttribute("aria-hidden", String(!isActive));
+        });
+      };
+
+      const updateFeaturePlatformButtons = () => {
+        featurePlatformButtons.forEach((button) => {
+          const isActive = button.getAttribute("data-platform") === activePlatform;
+          button.classList.toggle("text-zinc-900", isActive);
+          button.classList.toggle("text-zinc-500", !isActive);
+          button.classList.toggle("hover:text-zinc-900", !isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+
+        if (featurePlatformIndicator instanceof HTMLElement) {
+          const activeIndex = featurePlatformButtons.findIndex((button) => button.getAttribute("data-platform") === activePlatform);
+
+          featurePlatformIndicator.style.transform = `translateX(${Math.max(activeIndex, 0) * 100}%)`;
+        }
+      };
+
+      const setActiveSlide = (nextIndex) => {
+        if (nextIndex === activeSlideIndex) return;
+
+        activeSlideIndex = nextIndex;
+        updateFeatureCopies();
+        updateFeatureVisuals();
+      };
+
+      const setActivePlatform = (nextPlatform) => {
+        if (nextPlatform === activePlatform) return;
+
+        activePlatform = nextPlatform;
+        updateFeaturePlatformButtons();
+        updateFeatureVisuals();
+      };
+
+      const updateFeatureShowcase = () => {
+        ticking = false;
+
+        const scrollDistance = featureShowcase.offsetHeight - window.innerHeight;
+        if (scrollDistance <= 0) {
+          setActiveSlide(0);
+          return;
+        }
+
+        const rect = featureShowcase.getBoundingClientRect();
+        const progress = Math.min(Math.max(-rect.top / scrollDistance, 0), 1);
+        const nextIndex = Math.min(featureCopies.length - 1, Math.floor(progress * featureCopies.length));
+
+        setActiveSlide(nextIndex);
+      };
+
+      const requestFeatureShowcaseUpdate = () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateFeatureShowcase);
+      };
+
+      setActiveSlide(0);
+      updateFeaturePlatformButtons();
+      updateFeatureVisuals();
+      updateFeatureShowcase();
+
+      window.addEventListener("scroll", requestFeatureShowcaseUpdate, { passive: true });
+      window.addEventListener("resize", requestFeatureShowcaseUpdate);
+
+      featurePlatformButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const nextPlatform = button.getAttribute("data-platform");
+          if (nextPlatform) {
+            setActivePlatform(nextPlatform);
+          }
+        });
+      });
+    }
+  </script>
 </AppLayout>
