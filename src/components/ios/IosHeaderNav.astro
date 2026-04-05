@@ -1,0 +1,13 @@
+---
+import { pageSections } from "../../data/ios";
+---
+
+<nav aria-label="页面导航" class="hidden items-center gap-0.5 md:flex">
+  {
+    pageSections.map((section) => (
+      <a href={`#${section.id}`} data-section-link data-smooth-scroll class="px-2 py-1 text-sm font-medium text-zinc-500 transition-colors duration-200 hover:text-zinc-900">
+        {section.label}
+      </a>
+    ))
+  }
+</nav>

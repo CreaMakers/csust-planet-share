@@ -1,0 +1,10 @@
+---
+import { featureShowcaseSectionId } from "../../data/ios";
+import IosFeatureShowcaseDesktop from "./IosFeatureShowcaseDesktop.astro";
+import IosFeatureShowcaseMobile from "./IosFeatureShowcaseMobile.astro";
+---
+
+<section id={featureShowcaseSectionId} class="relative bg-white">
+  <IosFeatureShowcaseMobile />
+  <IosFeatureShowcaseDesktop />
+</section>
