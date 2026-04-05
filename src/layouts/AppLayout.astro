@@ -48,21 +48,21 @@ const androidPrimaryLinks = createAndroidPrimaryLinks(apkUrl);
   <body class="min-h-screen bg-zinc-50 text-zinc-900 antialiased">
     <div class="flex min-h-screen flex-col">
       <header class="fixed inset-x-0 top-0 z-50 px-5 pt-4 sm:px-8 sm:pt-6 lg:px-10">
-        <div class="mx-auto grid h-16 w-full max-w-[54rem] grid-cols-[auto_1fr_auto] items-center gap-4 rounded-full border border-zinc-200/80 bg-white/60 px-5 shadow-sm shadow-zinc-200/40 backdrop-blur-md sm:px-6">
-          <a href="/" class="inline-flex items-center gap-3">
+        <div data-topbar-shell data-topbar-expanded="false" class="mx-auto grid min-h-16 w-full max-w-[54rem] grid-cols-[auto_1fr_auto] grid-rows-[3rem_auto] items-center rounded-[2rem] border border-zinc-200/80 bg-white/60 px-4 py-2 shadow-sm shadow-zinc-200/40 backdrop-blur-md transition-[padding,row-gap] duration-300 sm:px-5 md:grid-rows-1 md:rounded-full md:px-6 md:py-0">
+          <a href="/" class="col-start-1 row-start-1 inline-flex min-w-0 items-center gap-3">
             <img src="/Logo.png" alt="长理星球 Logo" class="h-10 w-10 object-contain" />
-            <span class="text-lg font-semibold tracking-tight sm:text-xl"> 长理星球 </span>
+            <span class="truncate text-lg font-semibold tracking-tight sm:text-xl"> 长理星球 </span>
           </a>
           {
             hasHeaderNav && (
-              <div class="flex min-w-0 justify-center">
+              <div id="topbar-nav-panel" data-topbar-nav-panel class="col-span-3 row-start-2 min-w-0 md:col-span-1 md:col-start-2 md:row-start-1 md:flex md:justify-center">
                 <slot name="header-nav" />
               </div>
             )
           }
           {
             hasHeaderActions && (
-              <div class="flex shrink-0 items-center justify-end">
+              <div class="col-start-3 row-start-1 flex shrink-0 items-center justify-end gap-2">
                 <slot name="header-actions" />
               </div>
             )
@@ -159,3 +159,44 @@ const androidPrimaryLinks = createAndroidPrimaryLinks(apkUrl);
     </div>
   </body>
 </html>
+
+<style>
+  [data-topbar-shell] {
+    row-gap: 0;
+  }
+
+  [data-topbar-nav-panel] {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      max-height 240ms ease,
+      opacity 180ms ease;
+  }
+
+  @media (max-width: 767px) {
+    [data-topbar-shell][data-topbar-expanded="true"] {
+      row-gap: 0.75rem;
+      padding-bottom: 1rem;
+    }
+
+    [data-topbar-shell][data-topbar-expanded="true"] [data-topbar-nav-panel] {
+      max-height: 20rem;
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+    }
+  }
+
+  @media (min-width: 768px) {
+    [data-topbar-nav-panel] {
+      max-height: none;
+      overflow: visible;
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+    }
+  }
+</style>
