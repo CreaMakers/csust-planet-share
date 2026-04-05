@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { androidSourceLinks, communityLinks, createAndroidPrimaryLinks, defaultLayoutDescription, defaultLayoutTitle, footerBrand, iosPrimaryLinks, iosSourceLinks } from "../data/app-layout";
 
 interface Props {
   title?: string;
@@ -27,37 +28,11 @@ const readAppConfig = async (): Promise<AppConfig> => {
   return {};
 };
 
-const { title = "长理星球", description = "长理星球官方页面" } = Astro.props;
+const { title = defaultLayoutTitle, description = defaultLayoutDescription } = Astro.props;
 const hasHeaderNav = Astro.slots.has("header-nav");
 const hasHeaderActions = Astro.slots.has("header-actions");
 const { apkUrl = "#" } = await readAppConfig();
-
-const iosPrimaryLinks = [
-  { label: "iOS 页面", href: "/ios" },
-  { label: "App Store", href: "https://apps.apple.com/zh/app/%E9%95%BF%E7%90%86%E6%98%9F%E7%90%83/id6748840801" },
-  { label: "TestFlight", href: "https://testflight.apple.com/join/xMbzN8aU" },
-  { label: "意见反馈", href: "https://my.feishu.cn/share/base/form/shrcnmYT0Hn0MEWoV11cnfi7zHg" },
-];
-
-const iosSourceLinks = [
-  { label: "iOS App 开源", href: "https://github.com/zHElEARN/CSUSTPlanet" },
-  { label: "iOS 后端开源", href: "https://github.com/zHElEARN/go-csust-planet" },
-  { label: "iOS 网络库开源", href: "https://github.com/zHElEARN/CSUSTKit" },
-];
-
-const androidPrimaryLinks = [
-  { label: "Android 页面", href: "/android" },
-  { label: "Android 下载", href: apkUrl },
-  { label: "意见反馈", href: "https://creamaker.feishu.cn/share/base/form/shrcn6LjBK78JLJfLeKDMe3hczd?chunked=false" },
-];
-
-const androidSourceLinks = [
-  { label: "Android App 开源", href: "https://github.com/CreaMakers/changli-planet-app" },
-  { label: "Android 后端开源", href: "https://github.com/CreaMakers/changli-planet-backend" },
-  { label: "Android 网络库开源", href: "https://github.com/CreaMakers/CSUSTDataGet" },
-];
-
-const communityLinks = [{ label: "QQ 交流群", href: "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=125010161&key=&card_type=group&source=external" }];
+const androidPrimaryLinks = createAndroidPrimaryLinks(apkUrl);
 ---
 
 <html lang="zh-CN" class="h-full">
@@ -102,15 +77,14 @@ const communityLinks = [{ label: "QQ 交流群", href: "mqqapi://card/show_pslca
       <footer class="border-t border-zinc-200/80 bg-white/85 py-14 text-sm text-zinc-600 backdrop-blur-md">
         <div class="mx-auto grid w-full max-w-[90rem] grid-cols-2 gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)_minmax(0,0.85fr)_minmax(0,0.7fr)] lg:gap-12">
           <div class="col-span-2 max-w-xl lg:col-span-1">
-            <p class="text-sm font-semibold text-blue-600">版权声明</p>
+            <p class="text-sm font-semibold text-blue-600">{footerBrand.eyebrow}</p>
             <div class="mt-5 flex items-center gap-4">
-              <img src="/Apple/AppIcon.png" alt="长理星球 App Icon" class="h-12 w-12 object-cover" />
-              <p class="text-2xl font-semibold tracking-tight text-zinc-900">长理星球</p>
+              <img src={footerBrand.iconSrc} alt={footerBrand.iconAlt} class="h-12 w-12 object-cover" />
+              <p class="text-2xl font-semibold tracking-tight text-zinc-900">{footerBrand.title}</p>
             </div>
-            <p class="mt-4 leading-7 text-zinc-600">长理星球为社区开发项目，并非长沙理工大学官方产品。长沙理工大学相关校名、校徽与标识权利归长沙理工大学所有。</p>
+            <p class="mt-4 leading-7 text-zinc-600">{footerBrand.description}</p>
             <div class="mt-6 space-y-2 text-zinc-500">
-              <p>&copy; 2024-2026 CreaMakers</p>
-              <p>湘ICP备2024091230号-2</p>
+              {footerBrand.legalLines.map((line) => <p>{line}</p>)}
             </div>
           </div>
 
