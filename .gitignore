@@ -24,3 +24,5 @@ pnpm-debug.log*
 .idea/
 
 config/config.json
+
+public/Apple
