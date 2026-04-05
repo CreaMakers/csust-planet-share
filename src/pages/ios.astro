@@ -1,13 +1,13 @@
 ---
 import AppLayout from "../layouts/AppLayout.astro";
 import { ChevronDown } from "@lucide/astro";
-import { ExternalLink, Server, FilePenLine, Rocket } from "@lucide/astro";
-import { siApple, siSwift, siGithub, siAppstore } from "simple-icons";
+import { ExternalLink, Server, FilePenLine, FlaskConical, Smartphone } from "@lucide/astro";
+import { siSwift, siGithub, siAppstore } from "simple-icons";
 
 const pageTitle = "长理星球";
 const pageDescription = "长理星球 iOS 版本安装与开源项目入口。";
 const pageUrl = Astro.url.href;
-const previewImageUrl = new URL("/logo_transparent.png", Astro.url).href;
+const previewImageUrl = new URL("/Logo.png", Astro.url).href;
 const featurePlatforms = [
   {
     id: "iphone",
@@ -141,7 +141,14 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
     <meta name="twitter:image" content={previewImageUrl} />
   </Fragment>
 
-  <a id="topbar-install-cta" slot="header-actions" href="#install-options" aria-hidden="true" tabindex="-1" class="pointer-events-none inline-flex h-10 items-center justify-center rounded-full bg-blue-600 px-4 text-sm font-semibold text-white opacity-0 shadow-sm shadow-blue-200/70 transition-opacity duration-300 ease-out hover:bg-blue-700 sm:h-11 sm:px-5 sm:text-base"> 立即安装 </a>
+  <nav slot="header-nav" aria-label="页面导航" class="hidden items-center gap-0.5 md:flex">
+    <a href="#ios-feature-showcase" data-section-link data-smooth-scroll class="px-2 py-1 text-sm font-medium text-zinc-500 transition-colors duration-200 hover:text-zinc-900"> 功能介绍 </a>
+    <a href="#install-options" data-section-link data-smooth-scroll class="px-2 py-1 text-sm font-medium text-zinc-500 transition-colors duration-200 hover:text-zinc-900"> 安装方式 </a>
+    <a href="#source-code" data-section-link data-smooth-scroll class="px-2 py-1 text-sm font-medium text-zinc-500 transition-colors duration-200 hover:text-zinc-900"> 源代码 </a>
+    <a href="#join-us" data-section-link data-smooth-scroll class="px-2 py-1 text-sm font-medium text-zinc-500 transition-colors duration-200 hover:text-zinc-900"> 加入我们 </a>
+  </nav>
+
+  <a id="topbar-install-cta" slot="header-actions" href="#install-options" data-smooth-scroll aria-hidden="true" tabindex="-1" class="pointer-events-none inline-flex h-10 items-center justify-center rounded-[999px] bg-blue-600 px-4 text-sm font-semibold text-white opacity-0 shadow-sm shadow-blue-200/70 transition-opacity duration-300 ease-out hover:bg-blue-700 sm:h-11 sm:px-5 sm:text-base"> 立即安装 </a>
 
   <section class="bg-gradient-to-b from-zinc-50 via-white to-zinc-100 text-center text-zinc-900">
     <div class="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-[90rem] items-center justify-center px-4 py-16 sm:px-6">
@@ -152,7 +159,7 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
         </h1>
         <p class="mt-5 max-w-3xl text-xl text-zinc-600 sm:text-2xl">课表、成绩、电量与校园工具，多端原生的高效校园助手</p>
         <img src="/Apple/Family.png" alt="长理星球 iOS 页面展示图" class="mt-10 w-full max-w-5xl object-contain" />
-        <a id="hero-install-cta" href="#install-options" class="mt-10 inline-flex h-14 items-center justify-center gap-2 rounded-full bg-blue-600 px-10 text-lg font-semibold text-white hover:bg-blue-700">
+        <a id="hero-install-cta" href="#install-options" data-smooth-scroll class="mt-10 inline-flex h-14 items-center justify-center gap-2 rounded-[999px] bg-blue-600 px-10 text-lg font-semibold text-white hover:bg-blue-700">
           立即安装
           <ChevronDown class="h-6 w-6" aria-hidden="true" />
         </a>
@@ -202,7 +209,7 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
     </div>
   </section>
 
-  <section id="install-options" class="w-full bg-gradient-to-b from-zinc-50 via-white to-zinc-100 py-24 md:py-32">
+  <section id="install-options" class="w-full scroll-mt-28 bg-gradient-to-b from-zinc-50 via-white to-zinc-100 py-24 md:py-32 sm:scroll-mt-32">
     <div class="mx-auto w-full max-w-[90rem] px-4 sm:px-6">
       <div class="mb-14 text-center md:mb-16">
         <h2 class="text-4xl font-semibold tracking-tight text-zinc-900 md:text-6xl">安装方式</h2>
@@ -219,7 +226,7 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
             </div>
             <h3 class="text-2xl font-semibold tracking-tight text-zinc-900">App Store</h3>
           </div>
-          <p class="text-lg text-zinc-600">通过 App Store 下载并安装 iOS 正式版。</p>
+          <p class="text-lg text-zinc-600">通过 App Store 下载并安装正式版。</p>
           <span class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-700">
             前往 App Store
             <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -229,11 +236,11 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
         <a href="https://testflight.apple.com/join/xMbzN8aU" target="_blank" rel="noopener noreferrer" class="group flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-zinc-50/70 p-8 transition duration-200 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-200/60">
           <div class="mb-5 flex items-center gap-4">
             <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-sky-50">
-              <Rocket class="h-7 w-7 text-sky-600" aria-hidden="true" />
+              <FlaskConical class="h-7 w-7 text-sky-600" aria-hidden="true" />
             </div>
             <h3 class="text-2xl font-semibold tracking-tight text-zinc-900">TestFlight</h3>
           </div>
-          <p class="text-lg text-zinc-600">加入 TestFlight，抢先体验 iOS 测试版本。</p>
+          <p class="text-lg text-zinc-600">加入 TestFlight，抢先体验测试版本。</p>
           <span class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-700">
             加入 TestFlight
             <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -243,10 +250,10 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
     </div>
   </section>
 
-  <section class="w-full border-y border-zinc-200/70 bg-white/70 py-20 md:py-28">
+  <section id="source-code" class="w-full scroll-mt-28 border-y border-zinc-200/70 bg-white/70 py-20 md:py-28 sm:scroll-mt-32">
     <div class="mx-auto w-full max-w-[90rem] px-4 sm:px-6">
       <div class="mb-14 text-center md:mb-16">
-        <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 md:text-5xl">开源共建</h2>
+        <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 md:text-5xl">源代码</h2>
         <p class="mx-auto mt-5 max-w-2xl text-lg text-zinc-600 md:text-xl">
           来自
           <a href="https://github.com/CreaMakers" target="_blank" rel="noopener noreferrer" class="mx-1 inline-flex items-center gap-1 font-medium text-blue-700 hover:underline">
@@ -255,31 +262,29 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
               <path d={siGithub.path}></path>
             </svg>
           </a>
-          组织下的开源项目，欢迎贡献。
+          组织下的 MIT 协议开源项目。
         </p>
       </div>
 
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <a href="https://github.com/zHElEARN/CSUSTPlanet" target="_blank" rel="noopener noreferrer" class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50">
           <div class="mb-4 inline-flex rounded-2xl bg-zinc-100/90 p-3">
-            <svg viewBox="0 0 24 24" class="h-7 w-7 text-zinc-900" fill="currentColor" aria-hidden="true">
-              <path d={siApple.path}></path>
-            </svg>
+            <Smartphone class="h-7 w-7 text-indigo-500" aria-hidden="true" />
           </div>
-          <h3 class="text-xl font-semibold tracking-tight text-zinc-900">iOS App</h3>
-          <p class="mt-2 text-zinc-600">长理星球 iOS 客户端源码。</p>
+          <h3 class="text-xl font-semibold tracking-tight text-zinc-900">CSUSTPlanet</h3>
+          <p class="mt-2 text-zinc-600">长理星球 iOS 客户端源码</p>
           <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700">
             查看项目
             <ExternalLink class="h-4 w-4" aria-hidden="true" />
           </span>
         </a>
 
-        <a href="https://github.com/zHElEARN/CSUSTPlanetBackend" target="_blank" rel="noopener noreferrer" class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50">
+        <a href="https://github.com/zHElEARN/go-csust-planet" target="_blank" rel="noopener noreferrer" class="group rounded-3xl border border-zinc-200/80 bg-white/90 p-6 transition duration-200 hover:border-zinc-300 hover:shadow-md hover:shadow-zinc-200/50">
           <div class="mb-4 inline-flex rounded-2xl bg-indigo-50/80 p-3">
             <Server class="h-7 w-7 text-indigo-500" aria-hidden="true" />
           </div>
-          <h3 class="text-xl font-semibold tracking-tight text-zinc-900">iOS Backend</h3>
-          <p class="mt-2 text-zinc-600">iOS 端配套后端服务。</p>
+          <h3 class="text-xl font-semibold tracking-tight text-zinc-900">go-planet-backend</h3>
+          <p class="mt-2 text-zinc-600">iOS 客户端配套后端服务源码</p>
           <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700">
             查看项目
             <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -293,7 +298,7 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
             </svg>
           </div>
           <h3 class="text-xl font-semibold tracking-tight text-zinc-900">CSUSTKit</h3>
-          <p class="mt-2 text-zinc-600">iOS 端核心网络 SDK。</p>
+          <p class="mt-2 text-zinc-600">核心网络 SDK 库</p>
           <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-700">
             查看项目
             <ExternalLink class="h-4 w-4" aria-hidden="true" />
@@ -303,7 +308,7 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
     </div>
   </section>
 
-  <section class="w-full bg-zinc-50 py-20 md:py-24">
+  <section id="join-us" class="w-full scroll-mt-28 bg-zinc-50 py-20 md:py-24 sm:scroll-mt-32">
     <div class="mx-auto w-full max-w-[90rem] px-4 sm:px-6">
       <div class="mx-auto max-w-4xl text-center">
         <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 md:text-5xl">加入我们</h2>
@@ -324,6 +329,36 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
     const featureVisuals = Array.from(document.querySelectorAll("[data-feature-visual]"));
     const featurePlatformButtons = Array.from(document.querySelectorAll("[data-feature-platform-button]"));
     const featurePlatformIndicator = document.getElementById("feature-platform-indicator");
+    const sectionLinks = Array.from(document.querySelectorAll("[data-section-link]"));
+    const smoothScrollLinks = Array.from(document.querySelectorAll("[data-smooth-scroll]"));
+    const headerElement = document.querySelector("header");
+    const pageSections = ["ios-feature-showcase", "install-options", "source-code", "join-us"].map((id) => document.getElementById(id)).filter((section) => section instanceof HTMLElement);
+
+    const scrollToSection = (targetId) => {
+      const targetSection = document.getElementById(targetId);
+      if (!(targetSection instanceof HTMLElement)) return;
+
+      const headerHeight = headerElement instanceof HTMLElement ? headerElement.offsetHeight : 0;
+      const offset = targetId === "ios-feature-showcase" ? 0 : headerHeight + 24;
+
+      window.scrollTo({
+        top: Math.max(targetSection.offsetTop - offset, 0),
+        behavior: "smooth",
+      });
+    };
+
+    if (smoothScrollLinks.length > 0) {
+      smoothScrollLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const href = link.getAttribute("href");
+          if (!href?.startsWith("#")) return;
+
+          event.preventDefault();
+          const targetId = href.slice(1);
+          scrollToSection(targetId);
+        });
+      });
+    }
 
     if (heroInstallButton instanceof HTMLElement && topbarInstallButton instanceof HTMLElement) {
       const setTopbarVisible = (visible) => {
@@ -350,6 +385,47 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
       );
 
       observer.observe(heroInstallButton);
+    }
+
+    if (sectionLinks.length > 0 && pageSections.length > 0) {
+      let navTicking = false;
+
+      const updateActiveSectionLink = () => {
+        navTicking = false;
+
+        const headerHeight = headerElement instanceof HTMLElement ? headerElement.offsetHeight : 0;
+        const triggerY = window.scrollY + headerHeight + 48;
+        let activeSectionId = "";
+
+        pageSections.forEach((section) => {
+          if (section.offsetTop <= triggerY) {
+            activeSectionId = section.id;
+          }
+        });
+
+        sectionLinks.forEach((link) => {
+          const targetId = link.getAttribute("href")?.slice(1);
+          const isActive = targetId === activeSectionId;
+          link.classList.toggle("text-blue-700", isActive);
+          link.classList.toggle("text-zinc-500", !isActive);
+          link.classList.toggle("hover:text-zinc-900", !isActive);
+          if (isActive) {
+            link.setAttribute("aria-current", "page");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      };
+
+      const requestActiveSectionLinkUpdate = () => {
+        if (navTicking) return;
+        navTicking = true;
+        window.requestAnimationFrame(updateActiveSectionLink);
+      };
+
+      updateActiveSectionLink();
+      window.addEventListener("scroll", requestActiveSectionLinkUpdate, { passive: true });
+      window.addEventListener("resize", requestActiveSectionLinkUpdate);
     }
 
     if (featureShowcase instanceof HTMLElement && featureCopies.length > 0 && featureVisuals.length > 0) {
