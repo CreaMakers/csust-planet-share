@@ -1,6 +1,6 @@
 ---
 import AppLayout from "../layouts/AppLayout.astro";
-import { ChevronDown } from "@lucide/astro";
+import { ChevronDown, ChevronLeft, ChevronRight } from "@lucide/astro";
 import { ExternalLink, Server, FilePenLine, FlaskConical, Smartphone } from "@lucide/astro";
 import { siSwift, siGithub, siAppstore } from "simple-icons";
 
@@ -167,43 +167,98 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
     </div>
   </section>
 
-  <section id="ios-feature-showcase" class="relative hidden bg-white lg:block" style={`height: ${featureSectionHeight};`}>
-    <div class="sticky top-0 box-border h-screen px-4 pt-24 sm:px-6 sm:pt-28">
-      <div class="mx-auto flex h-full w-full max-w-[90rem] items-center gap-12">
-        <div class="flex h-full w-[24rem] shrink-0 flex-col justify-center">
-          <div class="relative min-h-[18rem]">
+  <section id="ios-feature-showcase" class="relative bg-white">
+    <div class="box-border flex h-screen flex-col px-4 pb-4 pt-24 sm:px-6 sm:pb-6 sm:pt-28 lg:hidden" style="height: 100svh;">
+      <div class="mx-auto flex w-full max-w-2xl shrink-0 flex-col items-center text-center">
+        <div class="relative min-h-[8.5rem] w-full sm:min-h-[10rem]">
+          {
+            featureSlides.map((slide, index) => (
+              <article data-mobile-feature-copy aria-hidden={index === 0 ? "false" : "true"} class:list={["absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300 ease-out", index === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
+                <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-blue-600 sm:text-xs sm:tracking-[0.26em]">FEATURE {String(index + 1).padStart(2, "0")}</p>
+                <h2 class="mt-2 text-3xl font-semibold tracking-tight text-zinc-900 sm:mt-3 sm:text-4xl">{slide.title}</h2>
+                <p class="mt-2 max-w-[18rem] text-sm leading-6 text-zinc-600 sm:mt-3 sm:max-w-xl sm:text-base">{slide.description}</p>
+              </article>
+            ))
+          }
+        </div>
+
+        <div class="relative mt-5 inline-flex w-fit rounded-full border border-zinc-200/80 bg-zinc-100/90 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] shadow-zinc-200/70">
+          <span id="mobile-feature-platform-indicator" aria-hidden="true" class="absolute left-1 top-1 h-9 w-[4.75rem] rounded-full bg-white shadow-[0_8px_18px_rgba(15,23,42,0.12)] transition-transform duration-300 ease-out sm:h-10 sm:w-20"></span>
+          {
+            featurePlatforms.map((platform, index) => (
+              <button type="button" data-mobile-feature-platform-button data-platform={platform.id} data-platform-index={index} aria-pressed={index === 0 ? "true" : "false"} class:list={["relative z-10 inline-flex h-9 w-[4.75rem] items-center justify-center rounded-full text-sm font-medium transition-colors duration-300 sm:h-10 sm:w-20 sm:text-[0.95rem]", index === 0 ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"]}>
+                {platform.label}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="mt-6 min-h-0 flex-1">
+        <div class="relative h-full -mx-4 sm:-mx-6">
+          <button type="button" data-mobile-feature-prev aria-label="查看上一张截图" class="absolute left-1 top-1/2 z-10 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-zinc-200/80 bg-white/90 text-zinc-500 shadow-sm shadow-zinc-200/50 backdrop-blur-sm transition-colors duration-200 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-35 sm:left-1 sm:h-9 sm:w-9">
+            <ChevronLeft class="h-4 w-4" aria-hidden="true" />
+          </button>
+
+          <div data-mobile-feature-scroller class="feature-carousel flex h-full w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain">
             {
-              featureSlides.map((slide, index) => (
-                <article data-feature-copy aria-hidden={index === 0 ? "false" : "true"} class:list={["absolute inset-0 flex max-w-xl flex-col justify-center transition-opacity duration-500 ease-out", index === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
-                  <p class="text-sm font-semibold uppercase tracking-[0.28em] text-blue-600">FEATURE {String(index + 1).padStart(2, "0")}</p>
-                  <h2 class="mt-5 text-5xl font-semibold tracking-tight text-zinc-900">{slide.title}</h2>
-                  <p class="mt-6 text-2xl leading-relaxed text-zinc-600">{slide.description}</p>
+              featureSlides.map((slide, slideIndex) => (
+                <article data-mobile-feature-slide data-slide-index={slideIndex} class="relative flex h-full w-full shrink-0 snap-center items-center justify-center px-4 sm:px-5">
+                  {featurePlatforms.map((platform, platformIndex) => (
+                    <div data-mobile-feature-visual data-slide-index={slideIndex} data-platform={platform.id} aria-hidden={slideIndex === 0 && platformIndex === 0 ? "false" : "true"} class:list={["absolute inset-0 flex items-center justify-center px-4 transition-opacity duration-300 ease-out sm:px-5", slideIndex === 0 && platformIndex === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
+                      <img src={slide.images[platform.id]} alt={`${slide.title}${platform.label}界面`} class="max-h-full w-auto max-w-full object-contain" />
+                    </div>
+                  ))}
                 </article>
               ))
             }
           </div>
 
-          <div class="relative mt-10 inline-flex w-fit rounded-full border border-zinc-200/80 bg-zinc-100/90 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] shadow-zinc-200/70">
-            <span id="feature-platform-indicator" aria-hidden="true" class="absolute left-1 top-1 h-11 w-24 rounded-full bg-white shadow-[0_8px_18px_rgba(15,23,42,0.12)] transition-transform duration-300 ease-out xl:w-28"></span>
+          <button type="button" data-mobile-feature-next aria-label="查看下一张截图" class="absolute right-1 top-1/2 z-10 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-zinc-200/80 bg-white/90 text-zinc-500 shadow-sm shadow-zinc-200/50 backdrop-blur-sm transition-colors duration-200 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-35 sm:right-1 sm:h-9 sm:w-9">
+            <ChevronRight class="h-4 w-4" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div data-feature-showcase-desktop class="relative hidden lg:block" style={`height: ${featureSectionHeight};`}>
+      <div class="sticky top-0 box-border h-screen px-4 pt-24 sm:px-6 sm:pt-28">
+        <div class="mx-auto flex h-full w-full max-w-[90rem] items-center gap-12">
+          <div class="flex h-full w-[24rem] shrink-0 flex-col justify-center">
+            <div class="relative min-h-[18rem]">
+              {
+                featureSlides.map((slide, index) => (
+                  <article data-feature-copy aria-hidden={index === 0 ? "false" : "true"} class:list={["absolute inset-0 flex max-w-xl flex-col justify-center transition-opacity duration-500 ease-out", index === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
+                    <p class="text-sm font-semibold uppercase tracking-[0.28em] text-blue-600">FEATURE {String(index + 1).padStart(2, "0")}</p>
+                    <h2 class="mt-5 text-5xl font-semibold tracking-tight text-zinc-900">{slide.title}</h2>
+                    <p class="mt-6 text-2xl leading-relaxed text-zinc-600">{slide.description}</p>
+                  </article>
+                ))
+              }
+            </div>
+
+            <div class="relative mt-10 inline-flex w-fit rounded-full border border-zinc-200/80 bg-zinc-100/90 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] shadow-zinc-200/70">
+              <span id="feature-platform-indicator" aria-hidden="true" class="absolute left-1 top-1 h-11 w-24 rounded-full bg-white shadow-[0_8px_18px_rgba(15,23,42,0.12)] transition-transform duration-300 ease-out xl:w-28"></span>
+              {
+                featurePlatforms.map((platform, index) => (
+                  <button type="button" data-feature-platform-button data-platform={platform.id} data-platform-index={index} aria-pressed={index === 0 ? "true" : "false"} class:list={["relative z-10 inline-flex h-11 w-24 items-center justify-center rounded-full text-base font-medium transition-colors duration-300 xl:w-28", index === 0 ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"]}>
+                    {platform.label}
+                  </button>
+                ))
+              }
+            </div>
+          </div>
+          <div class="relative h-full min-w-0 flex-1">
             {
-              featurePlatforms.map((platform, index) => (
-                <button type="button" data-feature-platform-button data-platform={platform.id} data-platform-index={index} aria-pressed={index === 0 ? "true" : "false"} class:list={["relative z-10 inline-flex h-11 w-24 items-center justify-center rounded-full text-base font-medium transition-colors duration-300 xl:w-28", index === 0 ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"]}>
-                  {platform.label}
-                </button>
-              ))
+              featureSlides.map((slide, slideIndex) =>
+                featurePlatforms.map((platform, platformIndex) => (
+                  <div data-feature-visual data-slide-index={slideIndex} data-platform={platform.id} aria-hidden={slideIndex === 0 && platformIndex === 0 ? "false" : "true"} class:list={["absolute inset-0 flex items-center justify-end transition-opacity duration-500 ease-out", slideIndex === 0 && platformIndex === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
+                    <img src={slide.images[platform.id]} alt={`${slide.title}${platform.label}界面`} class:list={["object-contain", platform.imageClass]} />
+                  </div>
+                )),
+              )
             }
           </div>
-        </div>
-        <div class="relative h-full min-w-0 flex-1">
-          {
-            featureSlides.map((slide, slideIndex) =>
-              featurePlatforms.map((platform, platformIndex) => (
-                <div data-feature-visual data-slide-index={slideIndex} data-platform={platform.id} aria-hidden={slideIndex === 0 && platformIndex === 0 ? "false" : "true"} class:list={["absolute inset-0 flex items-center justify-end transition-opacity duration-500 ease-out", slideIndex === 0 && platformIndex === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
-                  <img src={slide.images[platform.id]} alt={`${slide.title}${platform.label}界面`} class:list={["object-contain", platform.imageClass]} />
-                </div>
-              )),
-            )
-          }
         </div>
       </div>
     </div>
@@ -324,11 +379,19 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
   <script is:inline>
     const heroInstallButton = document.getElementById("hero-install-cta");
     const topbarInstallButton = document.getElementById("topbar-install-cta");
-    const featureShowcase = document.getElementById("ios-feature-showcase");
+    const featureShowcase = document.querySelector("[data-feature-showcase-desktop]");
     const featureCopies = Array.from(document.querySelectorAll("[data-feature-copy]"));
     const featureVisuals = Array.from(document.querySelectorAll("[data-feature-visual]"));
     const featurePlatformButtons = Array.from(document.querySelectorAll("[data-feature-platform-button]"));
     const featurePlatformIndicator = document.getElementById("feature-platform-indicator");
+    const mobileFeatureScroller = document.querySelector("[data-mobile-feature-scroller]");
+    const mobileFeatureCopies = Array.from(document.querySelectorAll("[data-mobile-feature-copy]"));
+    const mobileFeatureSlides = Array.from(document.querySelectorAll("[data-mobile-feature-slide]"));
+    const mobileFeatureVisuals = Array.from(document.querySelectorAll("[data-mobile-feature-visual]"));
+    const mobileFeaturePlatformButtons = Array.from(document.querySelectorAll("[data-mobile-feature-platform-button]"));
+    const mobileFeaturePlatformIndicator = document.getElementById("mobile-feature-platform-indicator");
+    const mobileFeaturePrevButton = document.querySelector("[data-mobile-feature-prev]");
+    const mobileFeatureNextButton = document.querySelector("[data-mobile-feature-next]");
     const sectionLinks = Array.from(document.querySelectorAll("[data-section-link]"));
     const smoothScrollLinks = Array.from(document.querySelectorAll("[data-smooth-scroll]"));
     const headerElement = document.querySelector("header");
@@ -523,6 +586,142 @@ const featureSectionHeight = `${(featureSlides.length + 1) * 100}vh`;
           }
         });
       });
+    }
+
+    if (mobileFeatureScroller instanceof HTMLElement && mobileFeatureCopies.length > 0 && mobileFeatureSlides.length > 0 && mobileFeatureVisuals.length > 0) {
+      let activeMobileSlideIndex = -1;
+      let activeMobilePlatform = "iphone";
+      let mobileTicking = false;
+
+      const updateMobileFeatureCopies = () => {
+        mobileFeatureCopies.forEach((element, index) => {
+          const isActive = index === activeMobileSlideIndex;
+          element.classList.toggle("pointer-events-none", !isActive);
+          element.classList.toggle("opacity-0", !isActive);
+          element.classList.toggle("opacity-100", isActive);
+          element.setAttribute("aria-hidden", String(!isActive));
+        });
+      };
+
+      const updateMobileFeatureVisuals = () => {
+        mobileFeatureVisuals.forEach((element) => {
+          const isActive = Number(element.getAttribute("data-slide-index")) === activeMobileSlideIndex && element.getAttribute("data-platform") === activeMobilePlatform;
+          element.classList.toggle("pointer-events-none", !isActive);
+          element.classList.toggle("opacity-0", !isActive);
+          element.classList.toggle("opacity-100", isActive);
+          element.setAttribute("aria-hidden", String(!isActive));
+        });
+      };
+
+      const updateMobileFeaturePlatformButtons = () => {
+        mobileFeaturePlatformButtons.forEach((button) => {
+          const isActive = button.getAttribute("data-platform") === activeMobilePlatform;
+          button.classList.toggle("text-zinc-900", isActive);
+          button.classList.toggle("text-zinc-500", !isActive);
+          button.classList.toggle("hover:text-zinc-900", !isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+
+        if (mobileFeaturePlatformIndicator instanceof HTMLElement) {
+          const activeIndex = mobileFeaturePlatformButtons.findIndex((button) => button.getAttribute("data-platform") === activeMobilePlatform);
+
+          mobileFeaturePlatformIndicator.style.transform = `translateX(${Math.max(activeIndex, 0) * 100}%)`;
+        }
+      };
+
+      const updateMobileFeatureArrowButtons = () => {
+        if (mobileFeaturePrevButton instanceof HTMLButtonElement) {
+          mobileFeaturePrevButton.disabled = activeMobileSlideIndex <= 0;
+        }
+
+        if (mobileFeatureNextButton instanceof HTMLButtonElement) {
+          mobileFeatureNextButton.disabled = activeMobileSlideIndex >= mobileFeatureSlides.length - 1;
+        }
+      };
+
+      const setActiveMobileSlide = (nextIndex) => {
+        if (nextIndex === activeMobileSlideIndex) return;
+
+        activeMobileSlideIndex = nextIndex;
+        updateMobileFeatureCopies();
+        updateMobileFeatureVisuals();
+        updateMobileFeatureArrowButtons();
+      };
+
+      const setActiveMobilePlatform = (nextPlatform) => {
+        if (nextPlatform === activeMobilePlatform) return;
+
+        activeMobilePlatform = nextPlatform;
+        updateMobileFeaturePlatformButtons();
+        updateMobileFeatureVisuals();
+      };
+
+      const updateMobileFeatureShowcase = () => {
+        mobileTicking = false;
+
+        const scrollerRect = mobileFeatureScroller.getBoundingClientRect();
+        const scrollerCenter = scrollerRect.left + scrollerRect.width / 2;
+        let closestSlideIndex = 0;
+        let closestDistance = Number.POSITIVE_INFINITY;
+
+        mobileFeatureSlides.forEach((slide, index) => {
+          const rect = slide.getBoundingClientRect();
+          const slideCenter = rect.left + rect.width / 2;
+          const distance = Math.abs(slideCenter - scrollerCenter);
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestSlideIndex = index;
+          }
+        });
+
+        setActiveMobileSlide(closestSlideIndex);
+      };
+
+      const requestMobileFeatureShowcaseUpdate = () => {
+        if (mobileTicking) return;
+        mobileTicking = true;
+        window.requestAnimationFrame(updateMobileFeatureShowcase);
+      };
+
+      const scrollToMobileSlide = (nextIndex) => {
+        const targetSlide = mobileFeatureSlides[nextIndex];
+        if (!(targetSlide instanceof HTMLElement)) return;
+
+        mobileFeatureScroller.scrollTo({
+          left: targetSlide.offsetLeft,
+          behavior: "smooth",
+        });
+      };
+
+      setActiveMobileSlide(0);
+      updateMobileFeaturePlatformButtons();
+      updateMobileFeatureVisuals();
+      updateMobileFeatureShowcase();
+
+      mobileFeatureScroller.addEventListener("scroll", requestMobileFeatureShowcaseUpdate, { passive: true });
+      window.addEventListener("resize", requestMobileFeatureShowcaseUpdate);
+
+      mobileFeaturePlatformButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const nextPlatform = button.getAttribute("data-platform");
+          if (nextPlatform) {
+            setActiveMobilePlatform(nextPlatform);
+          }
+        });
+      });
+
+      if (mobileFeaturePrevButton instanceof HTMLButtonElement) {
+        mobileFeaturePrevButton.addEventListener("click", () => {
+          scrollToMobileSlide(Math.max(activeMobileSlideIndex - 1, 0));
+        });
+      }
+
+      if (mobileFeatureNextButton instanceof HTMLButtonElement) {
+        mobileFeatureNextButton.addEventListener("click", () => {
+          scrollToMobileSlide(Math.min(activeMobileSlideIndex + 1, mobileFeatureSlides.length - 1));
+        });
+      }
     }
   </script>
 </AppLayout>
