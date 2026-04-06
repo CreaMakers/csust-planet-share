@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  pageUrl: string;
+  previewImageUrl: string;
+  previewImageAlt?: string;
+  siteName?: string;
+  locale?: string;
+}
+
+const { title, description, pageUrl, previewImageUrl, previewImageAlt = "长理星球应用图标", siteName = "长理星球", locale = "zh_CN" } = Astro.props as Props;
+---
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="generator" content={Astro.generator} />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href={pageUrl} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={pageUrl} />
+<meta property="og:locale" content={locale} />
+<meta property="og:image" content={previewImageUrl} />
+<meta property="og:image:alt" content={previewImageAlt} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={previewImageUrl} />

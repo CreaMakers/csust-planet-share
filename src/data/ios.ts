@@ -1,4 +1,5 @@
 import { getAppleImage } from "./assets";
+import type { InstallOption, PageSection, SourceOrganization, SourceProject } from "./shared";
 
 export const pageTitle = "长理星球";
 export const pageDescription = "长理星球 iOS 版本安装与开源项目入口。";
@@ -15,7 +16,7 @@ export const pageSections = [
   { id: installOptionsSectionId, label: "安装方式" },
   { id: sourceCodeSectionId, label: "源代码" },
   { id: joinUsSectionId, label: "加入我们" },
-] as const;
+] satisfies ReadonlyArray<PageSection>;
 
 export const featurePlatforms = [
   {
@@ -162,12 +163,12 @@ export const installOptions = [
     ctaLabel: "加入 TestFlight",
     icon: "testflight",
   },
-] as const;
+] satisfies ReadonlyArray<InstallOption>;
 
 export const sourceOrganization = {
   name: "CreaMakers",
   href: "https://github.com/CreaMakers",
-};
+} satisfies SourceOrganization;
 
 export const sourceProjects = [
   {
@@ -188,6 +189,6 @@ export const sourceProjects = [
     href: "https://github.com/zHElEARN/CSUSTKit",
     icon: "sdk",
   },
-] as const;
+] satisfies ReadonlyArray<SourceProject>;
 
 export const joinUsFormUrl = "https://creamaker.feishu.cn/share/base/form/shrcnOIl2W9rBAcEYYrK12l6Ffd";

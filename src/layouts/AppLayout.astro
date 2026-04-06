@@ -1,40 +1,19 @@
 ---
 import { Image } from "astro:assets";
 import "../styles/global.css";
-import { readFile } from "node:fs/promises";
-import { resolve } from "node:path";
 import { appIconImage } from "../data/assets";
 import { androidSourceLinks, communityLinks, createAndroidPrimaryLinks, defaultLayoutDescription, defaultLayoutTitle, footerBrand, iosPrimaryLinks, iosSourceLinks } from "../data/app-layout";
+import { readAndroidApkUrl } from "../lib/app-config";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-type AppConfig = {
-  apkUrl?: string;
-};
-
-const readAppConfig = async (): Promise<AppConfig> => {
-  const configPaths = [resolve(process.cwd(), "config/config.json"), resolve(process.cwd(), "config/config.template.json")];
-
-  for (const configPath of configPaths) {
-    try {
-      const configContent = await readFile(configPath, "utf-8");
-      return JSON.parse(configContent) as AppConfig;
-    } catch {
-      continue;
-    }
-  }
-
-  return {};
-};
-
 const { title = defaultLayoutTitle, description = defaultLayoutDescription } = Astro.props;
 const hasHeaderNav = Astro.slots.has("header-nav");
 const hasHeaderActions = Astro.slots.has("header-actions");
-const { apkUrl = "#" } = await readAppConfig();
-const androidPrimaryLinks = createAndroidPrimaryLinks(apkUrl);
+const androidPrimaryLinks = createAndroidPrimaryLinks(await readAndroidApkUrl());
 ---
 
 <html lang="zh-CN" class="h-full">

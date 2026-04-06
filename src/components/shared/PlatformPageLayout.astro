@@ -1,0 +1,27 @@
+---
+import AppLayout from "../../layouts/AppLayout.astro";
+import { appIconImage } from "../../data/assets";
+import type { PageSection } from "../../data/shared";
+import HeaderNav from "./HeaderNav.astro";
+import PageHeadMeta from "./PageHeadMeta.astro";
+import TopbarInstallButton from "./TopbarInstallButton.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  sections: readonly PageSection[];
+  installSectionId: string;
+}
+
+const { title, description, sections, installSectionId } = Astro.props as Props;
+const pageUrl = Astro.url.href;
+const previewImageUrl = new URL(appIconImage.src, Astro.url).href;
+---
+
+<AppLayout title={title} description={description}>
+  <PageHeadMeta slot="head" title={title} description={description} pageUrl={pageUrl} previewImageUrl={previewImageUrl} />
+  <HeaderNav slot="header-nav" sections={sections} />
+  <TopbarInstallButton slot="header-actions" installSectionId={installSectionId} />
+
+  <slot />
+</AppLayout>

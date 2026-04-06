@@ -1,19 +1,31 @@
 ---
 import { ExternalLink, FlaskConical } from "@lucide/astro";
-import { siAppstore } from "simple-icons";
-import { installOptions, installOptionsSectionId } from "../../data/ios";
+import { siAndroid, siAppstore } from "simple-icons";
+import type { InstallOption } from "../../data/shared";
+
+interface Props {
+  sectionId: string;
+  options: readonly InstallOption[];
+  title?: string;
+  description?: string;
+  singleColumn?: boolean;
+}
+
+const props = Astro.props as Props;
+const { sectionId, options, title = "安装方式", description = "选择最适合你的方式，快速安装长理星球。" } = props;
+const singleColumn = props.singleColumn ?? options.length === 1;
 ---
 
-<section id={installOptionsSectionId} class="w-full scroll-mt-28 bg-gradient-to-b from-zinc-50 via-white to-zinc-100 py-24 md:py-32 sm:scroll-mt-32">
+<section id={sectionId} class="w-full scroll-mt-28 bg-gradient-to-b from-zinc-50 via-white to-zinc-100 py-24 md:py-32 sm:scroll-mt-32">
   <div class="mx-auto w-full max-w-[90rem] px-4 sm:px-6">
     <div class="mb-14 text-center md:mb-16">
-      <h2 class="text-4xl font-semibold tracking-tight text-zinc-900 md:text-6xl">安装方式</h2>
-      <p class="mx-auto mt-5 max-w-3xl text-xl text-zinc-600 md:text-2xl">选择最适合你的方式，快速安装长理星球。</p>
+      <h2 class="text-4xl font-semibold tracking-tight text-zinc-900 md:text-6xl">{title}</h2>
+      <p class="mx-auto mt-5 max-w-3xl text-xl text-zinc-600 md:text-2xl">{description}</p>
     </div>
 
-    <div class="grid grid-cols-1 gap-7 md:grid-cols-2">
+    <div class:list={["grid grid-cols-1 gap-7", singleColumn ? "mx-auto max-w-3xl" : "md:grid-cols-2"]}>
       {
-        installOptions.map((option) => (
+        options.map((option) => (
           <a href={option.href} target="_blank" rel="noopener noreferrer" class="group flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-zinc-50/70 p-8 transition duration-200 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-200/60">
             <div class="mb-5 flex items-center gap-4">
               {option.icon === "appstore" ? (
@@ -22,9 +34,15 @@ import { installOptions, installOptionsSectionId } from "../../data/ios";
                     <path d={siAppstore.path} />
                   </svg>
                 </div>
-              ) : (
+              ) : option.icon === "testflight" ? (
                 <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-sky-50">
                   <FlaskConical class="h-7 w-7 text-sky-600" aria-hidden="true" />
+                </div>
+              ) : (
+                <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-50">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7 text-emerald-600" fill="currentColor" aria-hidden="true">
+                    <path d={siAndroid.path} />
+                  </svg>
                 </div>
               )}
               <h3 class="text-2xl font-semibold tracking-tight text-zinc-900">{option.title}</h3>

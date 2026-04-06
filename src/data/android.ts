@@ -1,3 +1,5 @@
+import type { InstallOption, PageSection, SourceOrganization, SourceProject } from "./shared";
+
 export const pageTitle = "长理星球";
 export const pageDescription = "长理星球 Android 版本安装与开源项目入口。";
 
@@ -11,17 +13,9 @@ export const pageSections = [
   { id: installOptionsSectionId, label: "安装方式" },
   { id: sourceCodeSectionId, label: "源代码" },
   { id: joinUsSectionId, label: "加入我们" },
-] as const;
+] satisfies ReadonlyArray<PageSection>;
 
-export type AndroidInstallOption = {
-  title: string;
-  description: string;
-  href: string;
-  ctaLabel: string;
-  icon: "android";
-};
-
-export const createInstallOptions = (apkUrl: string): AndroidInstallOption[] => [
+export const createInstallOptions = (apkUrl: string): InstallOption[] => [
   {
     title: "Android APK",
     description: "下载最新版 APK 安装包，直接完成安装。",
@@ -34,7 +28,7 @@ export const createInstallOptions = (apkUrl: string): AndroidInstallOption[] => 
 export const sourceOrganization = {
   name: "CreaMakers",
   href: "https://github.com/CreaMakers",
-};
+} satisfies SourceOrganization;
 
 export const sourceProjects = [
   {
@@ -55,6 +49,6 @@ export const sourceProjects = [
     href: "https://github.com/CreaMakers/CSUSTDataGet",
     icon: "sdk",
   },
-] as const;
+] satisfies ReadonlyArray<SourceProject>;
 
 export const joinUsFormUrl = "https://creamaker.feishu.cn/share/base/form/shrcnOIl2W9rBAcEYYrK12l6Ffd";
