@@ -1,16 +1,68 @@
 ---
-import "../styles/global.css";
+import AppLayout from "../layouts/AppLayout.astro";
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import AndroidHeaderNav from "../components/android/AndroidHeaderNav.astro";
+import AndroidHeroSection from "../components/android/AndroidHeroSection.astro";
+import AndroidInstallOptionsSection from "../components/android/AndroidInstallOptionsSection.astro";
+import AndroidJoinUsSection from "../components/android/AndroidJoinUsSection.astro";
+import AndroidPageScripts from "../components/android/AndroidPageScripts.astro";
+import AndroidSourceCodeSection from "../components/android/AndroidSourceCodeSection.astro";
+import AndroidTopbarInstallButton from "../components/android/AndroidTopbarInstallButton.astro";
+import { appIconImage } from "../data/assets";
+import { pageDescription, pageTitle } from "../data/android";
+
+const DEFAULT_APK_URL = "#";
+const CONFIG_FILE_PATHS = [resolve(process.cwd(), "config/config.json"), resolve(process.cwd(), "config/config.template.json")];
+
+let androidApkUrl = DEFAULT_APK_URL;
+
+for (const configFilePath of CONFIG_FILE_PATHS) {
+  try {
+    const configRaw = await readFile(configFilePath, "utf-8");
+    const config = JSON.parse(configRaw) as { apkUrl?: string };
+
+    if (typeof config.apkUrl === "string" && config.apkUrl.trim()) {
+      androidApkUrl = config.apkUrl.trim();
+      break;
+    }
+  } catch {
+    continue;
+  }
+}
+
+const pageUrl = Astro.url.href;
+const previewImageUrl = new URL(appIconImage.src, Astro.url).href;
 ---
 
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Android</title>
-  </head>
-  <body class="min-h-screen bg-zinc-50 text-zinc-900 antialiased">
-    <main class="mx-auto flex min-h-screen w-full max-w-[90rem] items-center justify-center px-4 text-center sm:px-6">
-      <p class="text-2xl font-medium">Android 页面占位内容</p>
-    </main>
-  </body>
-</html>
+<AppLayout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={pageUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="长理星球" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:image" content={previewImageUrl} />
+    <meta property="og:image:alt" content="长理星球应用图标" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={previewImageUrl} />
+  </Fragment>
+
+  <AndroidHeaderNav slot="header-nav" />
+  <AndroidTopbarInstallButton slot="header-actions" />
+
+  <AndroidHeroSection />
+  <AndroidInstallOptionsSection apkUrl={androidApkUrl} />
+  <AndroidSourceCodeSection />
+  <AndroidJoinUsSection />
+  <AndroidPageScripts />
+</AppLayout>
