@@ -25,4 +25,4 @@ pnpm-debug.log*
 
 config/config.json
 
-public/Apple
+src/assets/Apple

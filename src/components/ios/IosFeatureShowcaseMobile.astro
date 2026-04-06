@@ -1,6 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { ChevronLeft, ChevronRight } from "@lucide/astro";
-import { featurePlatforms, featureSlides } from "../../data/ios";
+import { featureImageWidths, featurePlatforms, featureSlides, mobileFeatureImageSizes } from "../../data/ios";
 ---
 
 <div class="box-border flex h-screen flex-col px-4 pb-4 pt-24 sm:px-6 sm:pb-6 sm:pt-28 lg:hidden" style="height: 100svh;">
@@ -41,7 +42,7 @@ import { featurePlatforms, featureSlides } from "../../data/ios";
             <article data-mobile-feature-slide data-slide-index={slideIndex} class="relative flex h-full w-full shrink-0 snap-center items-center justify-center px-4 sm:px-5">
               {featurePlatforms.map((platform, platformIndex) => (
                 <div data-mobile-feature-visual data-slide-index={slideIndex} data-platform={platform.id} aria-hidden={slideIndex === 0 && platformIndex === 0 ? "false" : "true"} class:list={["absolute inset-0 flex items-center justify-center px-4 transition-opacity duration-300 ease-out sm:px-5", slideIndex === 0 && platformIndex === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
-                  <img src={slide.images[platform.id]} alt={`${slide.title}${platform.label}界面`} class="max-h-full w-auto max-w-full object-contain" />
+                  <Image src={slide.images[platform.id]} alt={`${slide.title}${platform.label}界面`} widths={featureImageWidths[platform.id]} sizes={mobileFeatureImageSizes[platform.id]} class="max-h-full w-auto max-w-full object-contain" />
                 </div>
               ))}
             </article>

@@ -8,10 +8,11 @@ import IosJoinUsSection from "../components/ios/IosJoinUsSection.astro";
 import IosPageScripts from "../components/ios/IosPageScripts.astro";
 import IosSourceCodeSection from "../components/ios/IosSourceCodeSection.astro";
 import IosTopbarInstallButton from "../components/ios/IosTopbarInstallButton.astro";
+import { appIconImage } from "../data/assets";
 import { pageDescription, pageTitle } from "../data/ios";
 
 const pageUrl = Astro.url.href;
-const previewImageUrl = new URL("/Logo.png", Astro.url).href;
+const previewImageUrl = new URL(appIconImage.src, Astro.url).href;
 ---
 
 <AppLayout title={pageTitle} description={pageDescription}>

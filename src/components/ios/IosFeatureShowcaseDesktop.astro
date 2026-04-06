@@ -1,5 +1,6 @@
 ---
-import { featurePlatforms, featureSectionHeight, featureSlides } from "../../data/ios";
+import { Image } from "astro:assets";
+import { desktopFeatureImageSizes, featureImageWidths, featurePlatforms, featureSectionHeight, featureSlides } from "../../data/ios";
 ---
 
 <div data-feature-showcase-desktop class="relative hidden lg:block" style={`height: ${featureSectionHeight};`}>
@@ -35,7 +36,7 @@ import { featurePlatforms, featureSectionHeight, featureSlides } from "../../dat
           featureSlides.map((slide, slideIndex) =>
             featurePlatforms.map((platform, platformIndex) => (
               <div data-feature-visual data-slide-index={slideIndex} data-platform={platform.id} aria-hidden={slideIndex === 0 && platformIndex === 0 ? "false" : "true"} class:list={["absolute inset-0 flex items-center justify-end transition-opacity duration-500 ease-out", slideIndex === 0 && platformIndex === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
-                <img src={slide.images[platform.id]} alt={`${slide.title}${platform.label}界面`} class:list={["object-contain", platform.imageClass]} />
+                <Image src={slide.images[platform.id]} alt={`${slide.title}${platform.label}界面`} widths={featureImageWidths[platform.id]} sizes={desktopFeatureImageSizes[platform.id]} class={`object-contain ${platform.imageClass}`} />
               </div>
             )),
           )
