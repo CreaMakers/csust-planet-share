@@ -1,8 +1,8 @@
 import { getAppleImage } from "./assets";
 import type { InstallOption, PageSection, SourceOrganization, SourceProject } from "./shared";
 
-export const pageTitle = "长理星球";
-export const pageDescription = "长理星球 iOS 版本安装与开源项目入口。";
+export const pageTitle = "长理星球 | iOS";
+export const pageDescription = "长理星球 iOS 版本简介与安装入口";
 
 export const heroSectionId = "ios-home";
 export const featureShowcaseSectionId = "ios-feature-showcase";

@@ -4,12 +4,15 @@ import AppLayout from "../layouts/AppLayout.astro";
 import { ArrowRight } from "@lucide/astro";
 import { siAndroid, siApple } from "simple-icons";
 import { appIconImage } from "../data/assets";
+import PageHeadMeta from "../components/shared/PageHeadMeta.astro";
 
 const userAgent = (Astro.request.headers.get("user-agent") ?? "").toLowerCase();
 const isIOS = /(iphone|ipad|ipod|ios)/.test(userAgent) || (userAgent.includes("macintosh") && userAgent.includes("mobile"));
 const isAndroid = userAgent.includes("android");
-const pageTitle = "长理星球";
-const pageDescription = "长理星球下载入口。系统会自动识别跳转，也可手动选择 iOS 或 Android 版本。";
+const pageTitle = "长理星球 | 首页";
+const pageDescription = "长理星球下载入口";
+const pageUrl = Astro.url.href;
+const previewImageUrl = new URL(appIconImage.src, Astro.url).href;
 
 if (isIOS) {
   return Astro.redirect("/ios", 302);
@@ -21,6 +24,7 @@ if (isAndroid) {
 ---
 
 <AppLayout title={pageTitle} description={pageDescription}>
+  <PageHeadMeta slot="head" title={pageTitle} description={pageDescription} pageUrl={pageUrl} previewImageUrl={previewImageUrl} />
   <section class="flex flex-1">
     <div class="mx-auto flex h-full min-h-0 w-full max-w-[90rem] flex-1 flex-col items-center justify-center px-4 py-8 text-center sm:px-6 sm:py-10">
       <Image src={appIconImage} alt="长理星球" width={144} height={144} densities={[1.5, 2, 3]} format="png" priority class="h-28 w-28 object-contain sm:h-36 sm:w-36" />
