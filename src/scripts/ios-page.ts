@@ -1,4 +1,4 @@
-import { pageSections } from "../data/ios";
+import { heroSectionId, pageSections } from "../data/ios";
 
 type FeaturePlatform = "iphone" | "ipad" | "mac";
 
@@ -53,6 +53,15 @@ const setupSmoothScroll = (headerElement: HTMLElement | null) => {
   };
 
   const scrollToSection = (targetId: string) => {
+    if (targetId === heroSectionId) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
+      return;
+    }
+
     const targetSection = document.getElementById(targetId);
     if (!(targetSection instanceof HTMLElement)) {
       return;

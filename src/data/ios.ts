@@ -1,12 +1,14 @@
 export const pageTitle = "长理星球";
 export const pageDescription = "长理星球 iOS 版本安装与开源项目入口。";
 
+export const heroSectionId = "ios-home";
 export const featureShowcaseSectionId = "ios-feature-showcase";
 export const installOptionsSectionId = "install-options";
 export const sourceCodeSectionId = "source-code";
 export const joinUsSectionId = "join-us";
 
 export const pageSections = [
+  { id: heroSectionId, label: "首页" },
   { id: featureShowcaseSectionId, label: "功能介绍" },
   { id: installOptionsSectionId, label: "安装方式" },
   { id: sourceCodeSectionId, label: "源代码" },
