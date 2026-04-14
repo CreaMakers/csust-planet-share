@@ -26,3 +26,6 @@ pnpm-debug.log*
 config/config.json
 
 src/assets/Apple
+
+# docker build output
+csust-planet-share-amd64.tar
