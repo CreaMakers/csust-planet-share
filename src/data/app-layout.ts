@@ -21,6 +21,7 @@ export const iosPrimaryLinks: AppLayoutLink[] = [
   { label: "iOS 页面", href: "/ios" },
   { label: "App Store", href: "https://apps.apple.com/zh/app/%E9%95%BF%E7%90%86%E6%98%9F%E7%90%83/id6748840801" },
   { label: "TestFlight", href: "https://testflight.apple.com/join/xMbzN8aU" },
+  { label: "iOS 支持", href: "/ios/support" },
   { label: "意见反馈", href: "https://my.feishu.cn/share/base/form/shrcnmYT0Hn0MEWoV11cnfi7zHg" },
 ];
 

@@ -1,0 +1,46 @@
+---
+import AppLayout from "../../layouts/AppLayout.astro";
+
+const title = "iOS 支持与反馈 - 长理星球";
+const description = "长理星球 iOS 客户端的支持与反馈页面。";
+const feedbackUrl = "https://my.feishu.cn/share/base/form/shrcnmYT0Hn0MEWoV11cnfi7zHg";
+---
+
+<AppLayout title={title} description={description}>
+  <div class="mx-auto w-full max-w-3xl px-5 py-16 sm:px-8 sm:py-24 lg:px-10">
+    <h1 class="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">iOS 支持与反馈</h1>
+
+    <p class="mt-6 text-lg leading-8 text-zinc-600">感谢您使用长理星球 iOS 客户端。如果您在使用过程中遇到任何问题，或者有任何建议，欢迎通过以下方式与我们联系。</p>
+
+    <div class="mt-16">
+      <h2 class="text-2xl font-bold tracking-tight text-zinc-900">联系开发者</h2>
+      <p class="mt-4 text-base leading-7 text-zinc-600">您可以通过发送邮件直接联系开发者。为了更快地解决您的问题，请在邮件中尽可能包含您的设备型号、系统版本以及问题的详细描述。</p>
+
+      <div class="mt-8 flex items-center gap-x-6">
+        <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200/80">
+          <svg class="h-8 w-8 text-zinc-700" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="text-sm font-medium text-zinc-500">开发者邮箱</div>
+          <div class="mt-1 text-lg font-semibold tracking-tight text-zinc-900">developer[at]zhelearn.com</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16">
+      <h2 class="text-2xl font-bold tracking-tight text-zinc-900">填写意见反馈表单</h2>
+      <p class="mt-4 text-base leading-7 text-zinc-600">您也可以通过填写我们的意见反馈表单来提交您的建议或报告遇到的 Bug。我们会定期查看并处理表单中的反馈。</p>
+
+      <div class="mt-8">
+        <a href={feedbackUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-zinc-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900">
+          前往填写反馈表单
+          <svg class="ml-2 -mr-0.5 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</AppLayout>
