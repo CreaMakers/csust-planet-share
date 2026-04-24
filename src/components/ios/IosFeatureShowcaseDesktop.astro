@@ -11,19 +11,19 @@ import { desktopFeatureImageSizes, featureImageWidths, featurePlatforms, feature
           {
             featureSlides.map((slide, index) => (
               <article data-feature-copy aria-hidden={index === 0 ? "false" : "true"} class:list={["absolute inset-0 flex max-w-xl flex-col justify-center transition-opacity duration-500 ease-out", index === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
-                <p class="text-sm font-semibold uppercase tracking-[0.28em] text-blue-600">FEATURE {String(index + 1).padStart(2, "0")}</p>
-                <h2 class="mt-5 text-5xl font-semibold tracking-tight text-zinc-900">{slide.title}</h2>
-                <p class="mt-6 text-2xl leading-relaxed text-zinc-600">{slide.description}</p>
+                <p class="text-sm font-semibold uppercase tracking-[0.28em] text-[var(--color-blue)]">FEATURE {String(index + 1).padStart(2, "0")}</p>
+                <h2 class="apple-section-title mt-5 text-5xl text-[var(--page-text)]">{slide.title}</h2>
+                <p class="apple-body mt-6 text-2xl leading-relaxed text-[var(--page-muted)]">{slide.description}</p>
               </article>
             ))
           }
         </div>
 
-        <div class="relative mt-10 inline-flex w-fit rounded-full border border-zinc-200/80 bg-zinc-100/90 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] shadow-zinc-200/70">
-          <span id="feature-platform-indicator" aria-hidden="true" class="absolute left-1 top-1 h-11 w-24 rounded-full bg-white shadow-[0_8px_18px_rgba(15,23,42,0.12)] transition-transform duration-300 ease-out xl:w-28"></span>
+        <div class="apple-pill-switcher mt-10 overflow-hidden">
+          <span id="feature-platform-indicator" aria-hidden="true" class="absolute left-1 top-1 h-11 w-24 rounded-full bg-[var(--control-active-bg)] transition-transform duration-300 ease-out xl:w-28"></span>
           {
             featurePlatforms.map((platform, index) => (
-              <button type="button" data-feature-platform-button data-platform={platform.id} data-platform-index={index} aria-pressed={index === 0 ? "true" : "false"} class:list={["relative z-10 inline-flex h-11 w-24 items-center justify-center rounded-full text-base font-medium transition-colors duration-300 xl:w-28", index === 0 ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"]}>
+              <button type="button" data-feature-platform-button data-platform={platform.id} data-platform-index={index} aria-pressed={index === 0 ? "true" : "false"} class:list={["relative z-10 inline-flex h-11 w-24 shrink-0 items-center justify-center rounded-full px-0 text-base font-medium transition-colors duration-300 xl:w-28", index === 0 ? "text-[var(--control-active-text)]" : "text-[var(--control-text)] hover:text-[var(--page-text)]"]}>
                 {platform.label}
               </button>
             ))

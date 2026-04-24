@@ -10,19 +10,19 @@ import { featureImageWidths, featurePlatforms, featureSlides, mobileFeatureImage
       {
         featureSlides.map((slide, index) => (
           <article data-mobile-feature-copy aria-hidden={index === 0 ? "false" : "true"} class:list={["absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300 ease-out", index === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
-            <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-blue-600 sm:text-xs sm:tracking-[0.26em]">FEATURE {String(index + 1).padStart(2, "0")}</p>
-            <h2 class="mt-2 text-3xl font-semibold tracking-tight text-zinc-900 sm:mt-3 sm:text-4xl">{slide.title}</h2>
-            <p class="mt-2 max-w-[18rem] text-sm leading-6 text-zinc-600 sm:mt-3 sm:max-w-xl sm:text-base">{slide.description}</p>
+            <p class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[var(--color-blue)] sm:text-xs sm:tracking-[0.26em]">FEATURE {String(index + 1).padStart(2, "0")}</p>
+            <h2 class="mt-2 text-3xl font-semibold tracking-tight text-[var(--page-text)] sm:mt-3 sm:text-4xl">{slide.title}</h2>
+            <p class="mt-2 max-w-[18rem] text-sm leading-6 text-[var(--page-muted)] sm:mt-3 sm:max-w-xl sm:text-base">{slide.description}</p>
           </article>
         ))
       }
     </div>
 
-    <div class="relative mt-5 inline-flex w-fit rounded-full border border-zinc-200/80 bg-zinc-100/90 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] shadow-zinc-200/70">
-      <span id="mobile-feature-platform-indicator" aria-hidden="true" class="absolute left-1 top-1 h-9 w-[4.75rem] rounded-full bg-white shadow-[0_8px_18px_rgba(15,23,42,0.12)] transition-transform duration-300 ease-out sm:h-10 sm:w-20"></span>
+    <div class="apple-pill-switcher mt-5 overflow-hidden">
+      <span id="mobile-feature-platform-indicator" aria-hidden="true" class="absolute left-1 top-1 h-9 w-[4.75rem] rounded-full bg-[var(--control-active-bg)] transition-transform duration-300 ease-out sm:h-10 sm:w-20"></span>
       {
         featurePlatforms.map((platform, index) => (
-          <button type="button" data-mobile-feature-platform-button data-platform={platform.id} data-platform-index={index} aria-pressed={index === 0 ? "true" : "false"} class:list={["relative z-10 inline-flex h-9 w-[4.75rem] items-center justify-center rounded-full text-sm font-medium transition-colors duration-300 sm:h-10 sm:w-20 sm:text-[0.95rem]", index === 0 ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"]}>
+          <button type="button" data-mobile-feature-platform-button data-platform={platform.id} data-platform-index={index} aria-pressed={index === 0 ? "true" : "false"} class:list={["relative z-10 inline-flex h-9 w-[4.75rem] shrink-0 items-center justify-center rounded-full px-0 text-sm font-medium transition-colors duration-300 sm:h-10 sm:w-20 sm:text-[0.95rem]", index === 0 ? "text-[var(--control-active-text)]" : "text-[var(--control-text)] hover:text-[var(--page-text)]"]}>
             {platform.label}
           </button>
         ))
@@ -32,7 +32,7 @@ import { featureImageWidths, featurePlatforms, featureSlides, mobileFeatureImage
 
   <div class="mt-6 min-h-0 flex-1">
     <div class="relative h-full -mx-4 sm:-mx-6">
-      <button type="button" data-mobile-feature-prev aria-label="查看上一张截图" class="absolute left-1 top-1/2 z-10 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-zinc-200/80 bg-white/90 text-zinc-500 shadow-sm shadow-zinc-200/50 backdrop-blur-sm transition-colors duration-200 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-35 sm:left-1 sm:h-9 sm:w-9">
+      <button type="button" data-mobile-feature-prev aria-label="查看上一张截图" class="absolute left-1 top-1/2 z-10 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--control-border)] bg-[var(--control-bg)] text-[var(--control-text)] backdrop-blur-sm transition-colors duration-200 hover:text-[var(--page-text)] disabled:pointer-events-none disabled:opacity-35 sm:left-1 sm:h-9 sm:w-9">
         <ChevronLeft class="h-4 w-4" aria-hidden="true" />
       </button>
 
@@ -50,7 +50,7 @@ import { featureImageWidths, featurePlatforms, featureSlides, mobileFeatureImage
         }
       </div>
 
-      <button type="button" data-mobile-feature-next aria-label="查看下一张截图" class="absolute right-1 top-1/2 z-10 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-zinc-200/80 bg-white/90 text-zinc-500 shadow-sm shadow-zinc-200/50 backdrop-blur-sm transition-colors duration-200 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-35 sm:right-1 sm:h-9 sm:w-9">
+      <button type="button" data-mobile-feature-next aria-label="查看下一张截图" class="absolute right-1 top-1/2 z-10 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--control-border)] bg-[var(--control-bg)] text-[var(--control-text)] backdrop-blur-sm transition-colors duration-200 hover:text-[var(--page-text)] disabled:pointer-events-none disabled:opacity-35 sm:right-1 sm:h-9 sm:w-9">
         <ChevronRight class="h-4 w-4" aria-hidden="true" />
       </button>
     </div>

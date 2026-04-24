@@ -13,9 +13,9 @@ const setFadeVisibility = (element: HTMLElement, isActive: boolean) => {
 const updatePlatformButtons = (buttons: HTMLButtonElement[], activePlatform: FeaturePlatform, indicator: HTMLElement | null) => {
   buttons.forEach((button) => {
     const isActive = button.dataset.platform === activePlatform;
-    button.classList.toggle("text-zinc-900", isActive);
-    button.classList.toggle("text-zinc-500", !isActive);
-    button.classList.toggle("hover:text-zinc-900", !isActive);
+    button.classList.toggle("text-[var(--control-active-text)]", isActive);
+    button.classList.toggle("text-[var(--control-text)]", !isActive);
+    button.classList.toggle("hover:text-[var(--page-text)]", !isActive);
     button.setAttribute("aria-pressed", String(isActive));
   });
 

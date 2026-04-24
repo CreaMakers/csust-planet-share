@@ -1,7 +1,81 @@
 @import "tailwindcss";
 
+:root {
+  color-scheme: light;
+  --font-display: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-black: #000000;
+  --color-near-black: #1d1d1f;
+  --color-light: #f5f5f7;
+  --color-white: #ffffff;
+  --color-blue: #0071e3;
+  --color-link: #0066cc;
+  --color-link-dark: #2997ff;
+  --surface-1: #ffffff;
+  --surface-2: #fbfbfd;
+  --surface-dark-1: #272729;
+  --surface-dark-2: #2a2a2d;
+  --border-light: rgba(29, 29, 31, 0.1);
+  --border-dark: rgba(255, 255, 255, 0.12);
+  --shadow-card: rgba(0, 0, 0, 0.22) 3px 5px 30px 0px;
+  --page-bg: var(--color-light);
+  --page-text: var(--color-near-black);
+  --page-muted: rgba(29, 29, 31, 0.72);
+  --page-soft: rgba(29, 29, 31, 0.56);
+  --section-light-bg: var(--color-light);
+  --section-light-text: var(--color-near-black);
+  --section-light-muted: rgba(29, 29, 31, 0.72);
+  --section-dark-bg: var(--color-black);
+  --section-dark-text: var(--color-white);
+  --section-dark-muted: rgba(255, 255, 255, 0.72);
+  --card-light-bg: rgba(255, 255, 255, 0.82);
+  --card-dark-bg: rgba(42, 42, 45, 0.92);
+  --nav-bg: rgba(245, 245, 247, 0.78);
+  --nav-border: rgba(29, 29, 31, 0.08);
+  --nav-text: rgba(29, 29, 31, 0.8);
+  --nav-text-active: var(--color-near-black);
+  --footer-bg: rgba(245, 245, 247, 0.9);
+  --footer-border: rgba(29, 29, 31, 0.1);
+  --control-bg: rgba(255, 255, 255, 0.88);
+  --control-border: rgba(29, 29, 31, 0.08);
+  --control-text: rgba(29, 29, 31, 0.68);
+  --control-active-bg: var(--color-near-black);
+  --control-active-text: var(--color-white);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg: #000000;
+  --page-text: #f5f5f7;
+  --page-muted: rgba(255, 255, 255, 0.72);
+  --page-soft: rgba(255, 255, 255, 0.56);
+  --section-light-bg: #000000;
+  --section-light-text: #f5f5f7;
+  --section-light-muted: rgba(255, 255, 255, 0.72);
+  --section-dark-bg: #000000;
+  --section-dark-text: #ffffff;
+  --section-dark-muted: rgba(255, 255, 255, 0.72);
+  --card-light-bg: rgba(39, 39, 41, 0.92);
+  --card-dark-bg: rgba(42, 42, 45, 0.92);
+  --border-light: rgba(255, 255, 255, 0.12);
+  --nav-bg: rgba(0, 0, 0, 0.8);
+  --nav-border: rgba(255, 255, 255, 0.12);
+  --nav-text: rgba(255, 255, 255, 0.8);
+  --nav-text-active: #ffffff;
+  --footer-bg: rgba(0, 0, 0, 0.92);
+  --footer-border: rgba(255, 255, 255, 0.12);
+  --control-bg: rgba(39, 39, 41, 0.9);
+  --control-border: rgba(255, 255, 255, 0.12);
+  --control-text: rgba(255, 255, 255, 0.7);
+  --control-active-bg: #f5f5f7;
+  --control-active-text: #1d1d1f;
+}
+
 html {
   scroll-behavior: smooth;
+  background: var(--page-bg);
+  color: var(--page-text);
+  font-family: var(--font-body);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -18,4 +92,228 @@ html {
 
 .feature-carousel::-webkit-scrollbar {
   display: none;
+}
+
+body {
+  background: var(--page-bg);
+  color: var(--page-text);
+  font-family: var(--font-body);
+}
+
+a,
+button {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    opacity 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
+}
+
+.apple-page {
+  background: var(--page-bg);
+  color: var(--page-text);
+}
+
+.apple-shell {
+  width: min(100%, 980px);
+  margin-inline: auto;
+}
+
+.apple-section {
+  position: relative;
+  width: 100%;
+}
+
+.apple-section--light {
+  background: var(--section-light-bg);
+  color: var(--section-light-text);
+}
+
+.apple-section--dark {
+  background: var(--section-dark-bg);
+  color: var(--section-dark-text);
+}
+
+.apple-section__inner {
+  width: min(100%, 1200px);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.apple-hero {
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 5rem 4rem;
+  text-align: center;
+}
+
+.apple-display {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 6vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.28px;
+}
+
+.apple-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.apple-title-3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: 0.196px;
+}
+
+.apple-body {
+  font-size: 1.0625rem;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+}
+
+.apple-body--muted {
+  color: var(--page-muted);
+}
+
+.apple-section--dark .apple-body--muted {
+  color: var(--section-dark-muted);
+}
+
+.apple-link {
+  color: var(--color-link);
+}
+
+html[data-theme="dark"] .apple-link,
+.apple-section--dark .apple-link {
+  color: var(--color-link-dark);
+}
+
+.apple-button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 980px;
+  border: 1px solid transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.0625rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.apple-button--primary {
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+
+.apple-button--primary:hover {
+  background: #0077ed;
+}
+
+.apple-button--secondary {
+  background: transparent;
+  color: var(--color-link);
+  border-color: currentColor;
+}
+
+html[data-theme="dark"] .apple-button--secondary,
+.apple-section--dark .apple-button--secondary {
+  color: var(--color-link-dark);
+}
+
+.apple-card-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.apple-card {
+  height: 100%;
+  border-radius: 28px;
+  border: 1px solid var(--border-light);
+  background: var(--card-light-bg);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: saturate(180%) blur(24px);
+}
+
+.apple-section--dark .apple-card,
+html[data-theme="dark"] .apple-card {
+  border-color: var(--border-light);
+  background: var(--card-dark-bg);
+}
+
+.apple-pill-switcher {
+  position: relative;
+  display: inline-flex;
+  padding: 0.25rem;
+  border: 1px solid var(--control-border);
+  border-radius: 980px;
+  background: var(--control-bg);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+.apple-pill-switcher__button {
+  position: relative;
+  z-index: 1;
+  min-width: 5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 980px;
+  color: var(--control-text);
+}
+
+.apple-pill-switcher__button[data-active="true"] {
+  background: var(--control-active-bg);
+  color: var(--control-active-text);
+}
+
+.apple-nav-surface {
+  background: var(--nav-bg);
+  border-color: var(--nav-border);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+.apple-nav-link {
+  color: var(--nav-text);
+}
+
+.apple-nav-link:hover,
+.apple-nav-link[aria-current="page"] {
+  color: var(--nav-text-active);
+}
+
+.apple-footer {
+  background: var(--footer-bg);
+  border-top: 1px solid var(--footer-border);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+@media (min-width: 768px) {
+  .apple-section__inner {
+    padding-inline: 1.5rem;
+  }
+
+  .apple-card-grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .apple-card-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

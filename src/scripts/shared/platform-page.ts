@@ -205,11 +205,10 @@ const setupSectionNavigation = (headerElement: HTMLElement | null, pageSections:
     sectionLinks.forEach((link) => {
       const targetId = link.getAttribute("href")?.slice(1);
       const isActive = targetId === activeSectionId;
-      link.classList.toggle("text-blue-700", isActive);
-      link.classList.toggle("text-zinc-500", !isActive);
-      link.classList.toggle("hover:text-zinc-900", !isActive);
-      link.classList.toggle("bg-blue-50", isActive && link.hasAttribute("data-mobile-section-link"));
-      link.classList.toggle("hover:bg-zinc-100", !isActive && link.hasAttribute("data-mobile-section-link"));
+      link.classList.toggle("text-[var(--color-blue)]", isActive);
+      link.classList.toggle("apple-nav-link", !isActive);
+      link.classList.toggle("bg-[var(--control-bg)]", isActive && link.hasAttribute("data-mobile-section-link"));
+      link.classList.toggle("hover:bg-[var(--control-bg)]", !isActive && link.hasAttribute("data-mobile-section-link"));
 
       if (isActive) {
         link.setAttribute("aria-current", "page");

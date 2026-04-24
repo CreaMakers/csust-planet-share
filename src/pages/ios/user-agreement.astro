@@ -7,13 +7,15 @@ const description = "长理星球 iOS 客户端用户协议。";
 ---
 
 <AppLayout title={title} description={description}>
-  <div class="mx-auto w-full max-w-3xl px-5 py-16 sm:px-8 sm:py-24 lg:px-10">
-    <div class="rounded-[2rem] border border-zinc-200/80 bg-white/80 p-6 shadow-sm shadow-zinc-200/40 backdrop-blur-sm sm:p-8">
-      <article class="agreement-doc">
-        <UserAgreementDocument />
-      </article>
+  <section class="apple-section apple-section--light">
+    <div class="mx-auto w-full max-w-3xl px-5 py-16 sm:px-8 sm:py-24 lg:px-10">
+      <div class="rounded-[2rem] border border-[var(--border-light)] bg-[var(--card-light-bg)] p-6 shadow-[var(--shadow-card)] backdrop-blur-sm sm:p-8">
+        <article class="agreement-doc">
+          <UserAgreementDocument />
+        </article>
+      </div>
     </div>
-  </div>
+  </section>
 </AppLayout>
 
 <style>
@@ -22,7 +24,7 @@ const description = "长理星球 iOS 客户端用户协议。";
     line-height: 1.1;
     font-weight: 700;
     letter-spacing: -0.04em;
-    color: rgb(24 24 27);
+    color: var(--page-text);
   }
 
   :global(.agreement-doc h2) {
@@ -31,14 +33,14 @@ const description = "长理星球 iOS 客户端用户协议。";
     line-height: 1.2;
     font-weight: 700;
     letter-spacing: -0.03em;
-    color: rgb(24 24 27);
+    color: var(--page-text);
   }
 
   :global(.agreement-doc p),
   :global(.agreement-doc li) {
     font-size: 1rem;
     line-height: 1.9;
-    color: rgb(82 82 91);
+    color: var(--page-muted);
   }
 
   :global(.agreement-doc p) {
@@ -57,16 +59,16 @@ const description = "长理星球 iOS 客户端用户协议。";
 
   :global(.agreement-doc strong) {
     font-weight: 600;
-    color: rgb(24 24 27);
+    color: var(--page-text);
   }
 
   :global(.agreement-doc a) {
-    color: rgb(37 99 235);
+    color: var(--color-link);
     text-decoration: none;
   }
 
   :global(.agreement-doc a:hover) {
-    color: rgb(29 78 216);
+    color: var(--color-link-dark);
   }
 
   @media (max-width: 640px) {

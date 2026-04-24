@@ -24,21 +24,21 @@ if (isAndroid) {
 
 <AppLayout title={pageTitle} description={pageDescription}>
   <PageHeadMeta slot="head" title={pageTitle} description={pageDescription} pageUrl={pageUrl} previewImageUrl={previewImageUrl} />
-  <section class="flex flex-1 bg-gradient-to-b from-zinc-50 via-white to-zinc-100 text-center text-zinc-900">
-    <div class="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-[90rem] items-center justify-center px-4 py-16 sm:px-6">
+  <section class="apple-section apple-section--light flex flex-1">
+    <div class="apple-section__inner apple-hero">
       <div class="flex w-full max-w-6xl flex-col items-center">
-        <Image src={appIconImage} alt="长理星球" width={192} height={192} densities={[1.5, 2, 3]} format="png" priority class="mt-10 h-32 w-32 object-contain sm:h-40 sm:w-40" />
-        <h1 class="mt-8 flex flex-wrap items-baseline justify-center gap-x-4 gap-y-2 text-5xl font-semibold tracking-tight sm:gap-x-5 sm:text-7xl">长理星球</h1>
-        <p class="mt-5 max-w-3xl text-xl text-zinc-600 sm:text-2xl">课表、成绩、电量与校园工具</p>
+        <Image src={appIconImage} alt="长理星球" width={192} height={192} densities={[1.5, 2, 3]} format="png" priority class="h-32 w-32 object-contain sm:h-40 sm:w-40" />
+        <h1 class="apple-display mt-8 flex flex-wrap items-baseline justify-center gap-x-4 gap-y-2 sm:gap-x-5">长理星球</h1>
+        <p class="apple-body apple-body--muted mt-5 max-w-3xl text-xl sm:text-2xl">课表、成绩、电量与校园工具</p>
 
         <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-          <a href="/android" class="inline-flex h-14 min-w-[200px] items-center justify-center gap-3 rounded-[999px] bg-blue-600 px-8 text-lg font-semibold text-white hover:bg-blue-700">
+          <a href="/android" class="apple-button apple-button--primary min-w-[200px] px-8 text-lg font-semibold">
             <svg viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor" aria-hidden="true">
               <path d={siAndroid.path}></path>
             </svg>
             Android 端下载
           </a>
-          <a href="/ios" class="inline-flex h-14 min-w-[200px] items-center justify-center gap-3 rounded-[999px] bg-zinc-900 px-8 text-lg font-semibold text-white hover:bg-zinc-800">
+          <a href="/ios" class="apple-button min-w-[200px] border border-[var(--page-text)] bg-[var(--page-text)] px-8 text-lg font-semibold text-[var(--page-bg)]">
             <svg viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor" aria-hidden="true">
               <path d={siApple.path}></path>
             </svg>

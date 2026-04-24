@@ -16,39 +16,39 @@ const { sectionId, options, title = "安装方式", description = "选择最适�
 const singleColumn = props.singleColumn ?? options.length === 1;
 ---
 
-<section id={sectionId} class="w-full scroll-mt-28 bg-gradient-to-b from-zinc-50 via-white to-zinc-100 py-24 md:py-32 sm:scroll-mt-32">
-  <div class="mx-auto w-full max-w-[90rem] px-4 sm:px-6">
+<section id={sectionId} class="apple-section apple-section--light w-full scroll-mt-28 py-24 md:py-32 sm:scroll-mt-32">
+  <div class="apple-section__inner">
     <div class="mb-14 text-center md:mb-16">
-      <h2 class="text-4xl font-semibold tracking-tight text-zinc-900 md:text-6xl">{title}</h2>
-      <p class="mx-auto mt-5 max-w-3xl text-xl text-zinc-600 md:text-2xl">{description}</p>
+      <h2 class="apple-section-title">{title}</h2>
+      <p class="apple-body apple-body--muted mx-auto mt-5 max-w-3xl text-xl md:text-2xl">{description}</p>
     </div>
 
-    <div class:list={["grid grid-cols-1 gap-7", singleColumn ? "mx-auto max-w-3xl" : "md:grid-cols-2"]}>
+    <div class:list={["apple-card-grid gap-7", singleColumn ? "mx-auto max-w-3xl" : "apple-card-grid--two"]}>
       {
         options.map((option) => (
-          <a href={option.href} target="_blank" rel="noopener noreferrer" class="group flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-zinc-50/70 p-8 transition duration-200 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-200/60">
+          <a href={option.href} target="_blank" rel="noopener noreferrer" class="apple-card group flex h-full flex-col p-8">
             <div class="mb-5 flex items-center gap-4">
               {option.icon === "appstore" ? (
-                <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-900 text-white">
+                <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--page-text)] text-[var(--page-bg)]">
                   <svg viewBox="0 0 24 24" class="h-7 w-7" fill="currentColor" aria-hidden="true">
                     <path d={siAppstore.path} />
                   </svg>
                 </div>
               ) : option.icon === "testflight" ? (
-                <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-sky-50">
-                  <FlaskConical class="h-7 w-7 text-sky-600" aria-hidden="true" />
+                <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--control-bg)]">
+                  <FlaskConical class="h-7 w-7 text-[var(--color-blue)]" aria-hidden="true" />
                 </div>
               ) : (
-                <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-50">
-                  <svg viewBox="0 0 24 24" class="h-7 w-7 text-emerald-600" fill="currentColor" aria-hidden="true">
+                <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--control-bg)]">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7 text-[var(--color-blue)]" fill="currentColor" aria-hidden="true">
                     <path d={siAndroid.path} />
                   </svg>
                 </div>
               )}
-              <h3 class="text-2xl font-semibold tracking-tight text-zinc-900">{option.title}</h3>
+              <h3 class="apple-title-3">{option.title}</h3>
             </div>
-            <p class="text-lg text-zinc-600">{option.description}</p>
-            <span class="mt-7 inline-flex items-center gap-1 text-base font-medium text-blue-700">
+            <p class="apple-body apple-body--muted text-lg">{option.description}</p>
+            <span class="apple-link mt-7 inline-flex items-center gap-1 text-base font-medium">
               {option.ctaLabel}
               <ExternalLink class="h-4 w-4" aria-hidden="true" />
             </span>

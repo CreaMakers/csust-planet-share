@@ -5,16 +5,16 @@ import { familyImage } from "../../data/assets";
 import { heroSectionId, installOptionsSectionId } from "../../data/ios";
 ---
 
-<section id={heroSectionId} class="bg-gradient-to-b from-zinc-50 via-white to-zinc-100 text-center text-zinc-900">
-  <div class="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-[90rem] items-center justify-center px-4 py-16 sm:px-6">
+<section id={heroSectionId} class="apple-section apple-section--light text-center">
+  <div class="apple-section__inner apple-hero">
     <div class="flex w-full max-w-6xl flex-col items-center">
-      <h1 class="flex flex-wrap items-baseline justify-center gap-x-4 gap-y-2 text-5xl font-semibold tracking-tight sm:gap-x-5 sm:text-7xl">
+      <h1 class="apple-display flex flex-wrap items-baseline justify-center gap-x-4 gap-y-2 sm:gap-x-5">
         <span>长理星球</span>
-        <span class="bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 bg-clip-text text-4xl text-transparent sm:text-6xl">for Apple</span>
+        <span class="text-4xl text-[var(--color-blue)] sm:text-6xl">for Apple</span>
       </h1>
-      <p class="mt-5 max-w-3xl text-xl text-zinc-600 sm:text-2xl">课表、成绩、电量与校园工具，多端原生支持的校园助手</p>
+      <p class="apple-body apple-body--muted mt-5 max-w-3xl text-xl sm:text-2xl">课表、成绩、电量与校园工具，多端原生支持的校园助手</p>
       <Image src={familyImage} alt="长理星球 iOS 页面展示图" widths={[768, 1024, 1280, 1536, 2048]} sizes="(min-width: 1280px) 64rem, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)" priority class="mt-10 w-full max-w-5xl object-contain" />
-      <a id="hero-install-cta" href={`#${installOptionsSectionId}`} data-smooth-scroll class="mt-10 inline-flex h-14 items-center justify-center gap-2 rounded-[999px] bg-blue-600 px-10 text-lg font-semibold text-white hover:bg-blue-700">
+      <a id="hero-install-cta" href={`#${installOptionsSectionId}`} data-smooth-scroll class="apple-button apple-button--primary mt-10 px-10 text-lg font-semibold">
         立即安装
         <ChevronDown class="h-6 w-6" aria-hidden="true" />
       </a>

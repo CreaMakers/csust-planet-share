@@ -21,18 +21,40 @@ const androidPrimaryLinks = createAndroidPrimaryLinks(await readAndroidApkUrl())
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <meta name="color-scheme" content="light" />
-    <meta name="theme-color" content="#f8fafc" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f5f7" />
     <title>{title}</title>
     <slot name="head" />
+    <script is:inline>
+      (() => {
+        const storageKey = "csust-theme-mode";
+        const root = document.documentElement;
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        const getStoredPreference = () => {
+          try {
+            return localStorage.getItem(storageKey) ?? "system";
+          } catch {
+            return "system";
+          }
+        };
+        const applyTheme = (preference) => {
+          const resolvedTheme = preference === "system" ? (mediaQuery.matches ? "dark" : "light") : preference;
+          root.dataset.themePreference = preference;
+          root.dataset.theme = resolvedTheme;
+          metaThemeColor?.setAttribute("content", resolvedTheme === "dark" ? "#000000" : "#f5f5f7");
+        };
+        applyTheme(getStoredPreference());
+      })();
+    </script>
   </head>
-  <body class="min-h-screen bg-zinc-50 text-zinc-900 antialiased">
+  <body class="apple-page min-h-screen antialiased">
     <div class="flex min-h-screen flex-col">
       <header class="fixed inset-x-0 top-0 z-50 px-5 pt-4 sm:px-8 sm:pt-6 lg:px-10">
-        <div data-topbar-shell data-topbar-expanded="false" class="mx-auto grid min-h-16 w-full max-w-[54rem] grid-cols-[auto_1fr_auto] grid-rows-[3rem_auto] items-center rounded-[2rem] border border-zinc-200/80 bg-white/60 px-4 py-2 shadow-sm shadow-zinc-200/40 backdrop-blur-md transition-[padding,row-gap] duration-300 sm:px-5 md:grid-rows-1 md:rounded-full md:px-6 md:py-0">
+        <div data-topbar-shell data-topbar-expanded="false" class="apple-nav-surface mx-auto grid min-h-16 w-full max-w-[54rem] grid-cols-[auto_1fr_auto] grid-rows-[3rem_auto] items-center rounded-[2rem] border px-4 py-2 transition-[padding,row-gap] duration-300 sm:px-5 md:grid-rows-1 md:rounded-full md:px-6 md:py-0">
           <a href="/" class="col-start-1 row-start-1 inline-flex min-w-0 items-center gap-3">
             <Image src={appIconImage} alt="长理星球 Logo" width={40} height={40} densities={[1.5, 2, 3]} format="png" priority class="h-10 w-10 object-contain" />
-            <span class="truncate text-lg font-semibold tracking-tight sm:text-xl"> 长理星球 </span>
+            <span class="truncate text-lg font-semibold tracking-tight sm:text-xl">长理星球</span>
           </a>
           {
             hasHeaderNav && (
@@ -55,38 +77,38 @@ const androidPrimaryLinks = createAndroidPrimaryLinks(await readAndroidApkUrl())
         <slot />
       </main>
 
-      <footer class="border-t border-zinc-200/80 bg-white/85 py-14 text-sm text-zinc-600 backdrop-blur-md">
+      <footer class="apple-footer py-14 text-sm">
         <div class="mx-auto grid w-full max-w-[90rem] grid-cols-2 gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)_minmax(0,0.85fr)_minmax(0,0.7fr)] lg:gap-12">
           <div class="col-span-2 max-w-xl lg:col-span-1">
-            <p class="text-sm font-semibold text-blue-600">{footerBrand.eyebrow}</p>
+            <p class="text-sm font-semibold text-[var(--color-blue)]">{footerBrand.eyebrow}</p>
             <div class="mt-5 flex items-center gap-4">
               <Image src={footerBrand.iconSrc} alt={footerBrand.iconAlt} width={48} height={48} densities={[1.5, 2, 3]} format="png" class="h-12 w-12 object-cover" />
-              <p class="text-2xl font-semibold tracking-tight text-zinc-900">{footerBrand.title}</p>
+              <p class="text-2xl font-semibold tracking-tight text-[var(--page-text)]">{footerBrand.title}</p>
             </div>
-            <p class="mt-4 leading-7 text-zinc-600">{footerBrand.description}</p>
-            <div class="mt-6 space-y-2 text-zinc-500">
+            <p class="mt-4 leading-7 text-[var(--page-muted)]">{footerBrand.description}</p>
+            <div class="mt-6 space-y-2 text-[var(--page-soft)]">
               {footerBrand.legalLines.map((line) => <p>{line}</p>)}
             </div>
           </div>
 
           <div>
-            <p class="text-sm font-semibold text-zinc-500">iOS 端</p>
+            <p class="text-sm font-semibold text-[var(--page-soft)]">iOS 端</p>
             <ul class="mt-5 space-y-3">
               {
                 iosPrimaryLinks.map((link) => (
                   <li>
-                    <a href={link.href} class="transition-colors duration-200 hover:text-zinc-900">
+                    <a href={link.href} class="transition-colors duration-200 hover:text-[var(--page-text)]">
                       {link.label}
                     </a>
                   </li>
                 ))
               }
             </ul>
-            <ul class="mt-5 space-y-3 border-t border-zinc-200 pt-5">
+            <ul class="mt-5 space-y-3 border-t border-[var(--footer-border)] pt-5">
               {
                 iosSourceLinks.map((link) => (
                   <li>
-                    <a href={link.href} class="transition-colors duration-200 hover:text-zinc-900">
+                    <a href={link.href} class="transition-colors duration-200 hover:text-[var(--page-text)]">
                       {link.label}
                     </a>
                   </li>
@@ -96,23 +118,23 @@ const androidPrimaryLinks = createAndroidPrimaryLinks(await readAndroidApkUrl())
           </div>
 
           <div>
-            <p class="text-sm font-semibold text-zinc-500">Android 端</p>
+            <p class="text-sm font-semibold text-[var(--page-soft)]">Android 端</p>
             <ul class="mt-5 space-y-3">
               {
                 androidPrimaryLinks.map((link) => (
                   <li>
-                    <a href={link.href} class="transition-colors duration-200 hover:text-zinc-900">
+                    <a href={link.href} class="transition-colors duration-200 hover:text-[var(--page-text)]">
                       {link.label}
                     </a>
                   </li>
                 ))
               }
             </ul>
-            <ul class="mt-5 space-y-3 border-t border-zinc-200 pt-5">
+            <ul class="mt-5 space-y-3 border-t border-[var(--footer-border)] pt-5">
               {
                 androidSourceLinks.map((link) => (
                   <li>
-                    <a href={link.href} class="transition-colors duration-200 hover:text-zinc-900">
+                    <a href={link.href} class="transition-colors duration-200 hover:text-[var(--page-text)]">
                       {link.label}
                     </a>
                   </li>
@@ -122,12 +144,12 @@ const androidPrimaryLinks = createAndroidPrimaryLinks(await readAndroidApkUrl())
           </div>
 
           <div class="col-span-2 lg:col-span-1">
-            <p class="text-sm font-semibold text-zinc-500">社区</p>
+            <p class="text-sm font-semibold text-[var(--page-soft)]">社区</p>
             <ul class="mt-5 space-y-3">
               {
                 communityLinks.map((link) => (
                   <li>
-                    <a href={link.href} class="transition-colors duration-200 hover:text-zinc-900">
+                    <a href={link.href} class="transition-colors duration-200 hover:text-[var(--page-text)]">
                       {link.label}
                     </a>
                   </li>
@@ -135,9 +157,75 @@ const androidPrimaryLinks = createAndroidPrimaryLinks(await readAndroidApkUrl())
               }
             </ul>
           </div>
+
+          <div class="col-span-2 flex flex-col items-start gap-3 border-t border-[var(--footer-border)] pt-8 lg:col-span-4 lg:flex-row lg:items-center lg:justify-between">
+            <p class="text-sm text-[var(--page-soft)]">外观</p>
+            <div class="apple-pill-switcher" role="group" aria-label="外观切换">
+              <button type="button" class="apple-pill-switcher__button" data-theme-toggle="light">浅色</button>
+              <button type="button" class="apple-pill-switcher__button" data-theme-toggle="dark">深色</button>
+              <button type="button" class="apple-pill-switcher__button" data-theme-toggle="system">跟随系统</button>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
+    <script is:inline>
+      (() => {
+        const storageKey = "csust-theme-mode";
+        const root = document.documentElement;
+        const themeButtons = Array.from(document.querySelectorAll("[data-theme-toggle]"));
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        const getPreference = () => root.dataset.themePreference ?? "system";
+        const resolveTheme = (preference) => (preference === "system" ? (mediaQuery.matches ? "dark" : "light") : preference);
+        const syncButtons = (preference) => {
+          themeButtons.forEach((button) => {
+            const isActive = button instanceof HTMLElement && button.dataset.themeToggle === preference;
+            button.setAttribute("data-active", String(isActive));
+            button.setAttribute("aria-pressed", String(isActive));
+          });
+        };
+        const applyTheme = (preference, persist) => {
+          const resolvedTheme = resolveTheme(preference);
+          root.dataset.themePreference = preference;
+          root.dataset.theme = resolvedTheme;
+          metaThemeColor?.setAttribute("content", resolvedTheme === "dark" ? "#000000" : "#f5f5f7");
+          syncButtons(preference);
+          if (!persist) {
+            return;
+          }
+          try {
+            localStorage.setItem(storageKey, preference);
+          } catch {}
+        };
+
+        syncButtons(getPreference());
+
+        themeButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            if (!(button instanceof HTMLElement)) {
+              return;
+            }
+            const preference = button.dataset.themeToggle;
+            if (preference === "light" || preference === "dark" || preference === "system") {
+              applyTheme(preference, true);
+            }
+          });
+        });
+
+        const handleSystemChange = () => {
+          if (getPreference() === "system") {
+            applyTheme("system", false);
+          }
+        };
+
+        if (typeof mediaQuery.addEventListener === "function") {
+          mediaQuery.addEventListener("change", handleSystemChange);
+        } else {
+          mediaQuery.addListener(handleSystemChange);
+        }
+      })();
+    </script>
   </body>
 </html>
 
