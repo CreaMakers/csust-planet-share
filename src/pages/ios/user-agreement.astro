@@ -1,0 +1,82 @@
+---
+import AppLayout from "../../layouts/AppLayout.astro";
+import UserAgreementDocument from "../../content/documents/UserAgreement.md";
+
+const title = "iOS 用户协议 - 长理星球";
+const description = "长理星球 iOS 客户端用户协议。";
+---
+
+<AppLayout title={title} description={description}>
+  <div class="mx-auto w-full max-w-3xl px-5 py-16 sm:px-8 sm:py-24 lg:px-10">
+    <div class="rounded-[2rem] border border-zinc-200/80 bg-white/80 p-6 shadow-sm shadow-zinc-200/40 backdrop-blur-sm sm:p-8">
+      <article class="agreement-doc">
+        <UserAgreementDocument />
+      </article>
+    </div>
+  </div>
+</AppLayout>
+
+<style>
+  :global(.agreement-doc h1) {
+    font-size: 2.25rem;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: rgb(24 24 27);
+  }
+
+  :global(.agreement-doc h2) {
+    margin-top: 2.5rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: rgb(24 24 27);
+  }
+
+  :global(.agreement-doc p),
+  :global(.agreement-doc li) {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: rgb(82 82 91);
+  }
+
+  :global(.agreement-doc p) {
+    margin-top: 1rem;
+  }
+
+  :global(.agreement-doc ul) {
+    margin-top: 0.875rem;
+    padding-left: 1.5rem;
+    list-style: disc;
+  }
+
+  :global(.agreement-doc li + li) {
+    margin-top: 0.5rem;
+  }
+
+  :global(.agreement-doc strong) {
+    font-weight: 600;
+    color: rgb(24 24 27);
+  }
+
+  :global(.agreement-doc a) {
+    color: rgb(37 99 235);
+    text-decoration: none;
+  }
+
+  :global(.agreement-doc a:hover) {
+    color: rgb(29 78 216);
+  }
+
+  @media (max-width: 640px) {
+    :global(.agreement-doc h1) {
+      font-size: 1.875rem;
+    }
+
+    :global(.agreement-doc h2) {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+    }
+  }
+</style>
