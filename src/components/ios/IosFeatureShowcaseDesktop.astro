@@ -1,6 +1,6 @@
 ---
-import { Image } from "astro:assets";
 import { desktopFeatureImageSizes, featureImageWidths, featurePlatforms, featureSectionHeight, featureSlides } from "../../data/ios";
+import SmartImage from "../shared/SmartImage.astro";
 ---
 
 <div data-feature-showcase-desktop class="relative hidden lg:block" style={`height: ${featureSectionHeight};`}>
@@ -36,7 +36,16 @@ import { desktopFeatureImageSizes, featureImageWidths, featurePlatforms, feature
           featureSlides.map((slide, slideIndex) =>
             featurePlatforms.map((platform, platformIndex) => (
               <div data-feature-visual data-slide-index={slideIndex} data-platform={platform.id} aria-hidden={slideIndex === 0 && platformIndex === 0 ? "false" : "true"} class:list={["absolute inset-0 flex items-center justify-end transition-opacity duration-500 ease-out", slideIndex === 0 && platformIndex === 0 ? "opacity-100" : "pointer-events-none opacity-0"]}>
-                <Image src={slide.images[platform.id]} alt={`${slide.title}${platform.label}界面`} widths={featureImageWidths[platform.id]} sizes={desktopFeatureImageSizes[platform.id]} class={`object-contain ${platform.imageClass}`} />
+                <SmartImage
+                  src={slide.images[platform.id]}
+                  alt={`${slide.title}${platform.label}界面`}
+                  widths={featureImageWidths[platform.id]}
+                  sizes={desktopFeatureImageSizes[platform.id]}
+                  wrapperClass={platform.imageClass}
+                  imageClass="h-full w-full object-contain"
+                  radiusClass="rounded-[2rem]"
+                  skeletonClass="bg-[color-mix(in_srgb,var(--image-skeleton-base)_82%,transparent)]"
+                />
               </div>
             )),
           )

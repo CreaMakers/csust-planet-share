@@ -1,14 +1,26 @@
 ---
-import { Image } from "astro:assets";
 import { ChevronDown } from "@lucide/astro";
 import { appIconImage } from "../../data/assets";
 import { heroSectionId, installOptionsSectionId } from "../../data/android";
+import SmartImage from "../shared/SmartImage.astro";
 ---
 
 <section id={heroSectionId} class="apple-section apple-section--light text-center">
   <div class="apple-section__inner apple-hero">
     <div class="flex w-full max-w-6xl flex-col items-center">
-      <Image src={appIconImage} alt="长理星球 Android 图标" width={192} height={192} densities={[1.5, 2, 3]} format="png" priority class="h-32 w-32 object-contain sm:h-40 sm:w-40" />
+      <SmartImage
+        src={appIconImage}
+        alt="长理星球 Android 图标"
+        width={192}
+        height={192}
+        densities={[1.5, 2, 3]}
+        format="png"
+        priority
+        wrapperClass="h-32 w-32 sm:h-40 sm:w-40"
+        imageClass="h-full w-full object-contain"
+        radiusClass="rounded-[1.75rem]"
+        skeletonClass="bg-[color-mix(in_srgb,var(--image-skeleton-base)_90%,transparent)]"
+      />
       <h1 class="apple-display mt-8 flex flex-wrap items-baseline justify-center gap-x-4 gap-y-2 sm:gap-x-5">
         <span>长理星球</span>
       </h1>

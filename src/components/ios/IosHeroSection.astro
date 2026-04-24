@@ -1,8 +1,8 @@
 ---
-import { Image } from "astro:assets";
 import { ChevronDown } from "@lucide/astro";
 import { familyImage } from "../../data/assets";
 import { heroSectionId, installOptionsSectionId } from "../../data/ios";
+import SmartImage from "../shared/SmartImage.astro";
 ---
 
 <section id={heroSectionId} class="apple-section apple-section--light text-center">
@@ -13,7 +13,17 @@ import { heroSectionId, installOptionsSectionId } from "../../data/ios";
         <span class="text-4xl text-[var(--color-blue)] sm:text-6xl">for Apple</span>
       </h1>
       <p class="apple-body apple-body--muted mt-5 max-w-3xl text-xl sm:text-2xl">课表、成绩、电量与校园工具，多端原生支持的校园助手</p>
-      <Image src={familyImage} alt="长理星球 iOS 页面展示图" widths={[768, 1024, 1280, 1536, 2048]} sizes="(min-width: 1280px) 64rem, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)" priority class="mt-10 w-full max-w-5xl object-contain" />
+      <SmartImage
+        src={familyImage}
+        alt="长理星球 iOS 页面展示图"
+        widths={[768, 1024, 1280, 1536, 2048]}
+        sizes="(min-width: 1280px) 64rem, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
+        priority
+        wrapperClass="mt-10 w-full max-w-5xl"
+        imageClass="w-full object-contain"
+        radiusClass="rounded-[2rem]"
+        skeletonClass="bg-[color-mix(in_srgb,var(--image-skeleton-base)_80%,transparent)]"
+      />
       <a id="hero-install-cta" href={`#${installOptionsSectionId}`} data-smooth-scroll class="apple-button apple-button--primary mt-10 px-10 text-lg font-semibold">
         立即安装
         <ChevronDown class="h-6 w-6" aria-hidden="true" />

@@ -89,7 +89,6 @@ const setupTopbarInstallButton = () => {
     topbarInstallButton.classList.toggle("opacity-0", !visible);
     topbarInstallButton.classList.toggle("pointer-events-auto", visible);
     topbarInstallButton.classList.toggle("opacity-100", visible);
-    topbarInstallButton.setAttribute("aria-hidden", String(!visible));
 
     if (visible) {
       topbarInstallButton.removeAttribute("tabindex");
