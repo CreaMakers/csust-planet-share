@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import type { LocalImageProps } from "astro:assets";
 
 interface Props {
   src: ImageMetadata;
@@ -19,22 +20,7 @@ interface Props {
   class?: string;
 }
 
-const {
-  src,
-  alt,
-  width,
-  height,
-  widths,
-  sizes,
-  format,
-  densities,
-  priority = false,
-  wrapperClass = "",
-  imageClass = "",
-  radiusClass = "rounded-[1.75rem]",
-  skeletonClass = "",
-  class: legacyImageClass = "",
-} = Astro.props as Props;
+const { src, alt, width, height, widths, sizes, format, densities, priority = false, wrapperClass = "", imageClass = "", radiusClass = "rounded-[1.75rem]", skeletonClass = "", class: legacyImageClass = "" } = Astro.props as Props;
 
 const resolvedWidth = width ?? src.width;
 const resolvedHeight = height ?? src.height;
@@ -43,22 +29,41 @@ const rootStyle = aspectRatio ? `aspect-ratio: ${aspectRatio};` : undefined;
 const mergedImageClass = ["smart-image__asset", legacyImageClass, imageClass].filter(Boolean).join(" ");
 const mergedWrapperClass = ["smart-image", radiusClass, wrapperClass].filter(Boolean).join(" ");
 const mergedSkeletonClass = ["smart-image__skeleton", skeletonClass].filter(Boolean).join(" ");
+const imageProps: LocalImageProps = {
+  src,
+  alt,
+  priority,
+  class: mergedImageClass,
+};
+
+if (width !== undefined) {
+  imageProps.width = width;
+}
+
+if (height !== undefined) {
+  imageProps.height = height;
+}
+
+if (widths !== undefined) {
+  imageProps.widths = widths;
+}
+
+if (sizes !== undefined) {
+  imageProps.sizes = sizes;
+}
+
+if (format !== undefined) {
+  imageProps.format = format;
+}
+
+if (densities !== undefined) {
+  imageProps.densities = densities;
+}
 ---
 
 <div data-smart-image-root data-loaded="false" class={mergedWrapperClass} style={rootStyle}>
   <div aria-hidden="true" class={mergedSkeletonClass}></div>
-  <Image
-    src={src}
-    alt={alt}
-    width={width}
-    height={height}
-    widths={widths}
-    sizes={sizes}
-    format={format}
-    densities={densities}
-    priority={priority}
-    class={mergedImageClass}
-  />
+  <Image {...imageProps} />
 </div>
 
 <script is:inline>
