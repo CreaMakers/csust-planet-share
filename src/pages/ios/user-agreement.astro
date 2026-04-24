@@ -7,78 +7,11 @@ const description = "长理星球 iOS 客户端用户协议。";
 ---
 
 <AppLayout title={title} description={description}>
-  <section class="apple-section apple-section--light">
-    <div class="mx-auto w-full max-w-3xl px-5 py-16 sm:px-8 sm:py-24 lg:px-10">
-      <div class="rounded-[2rem] border border-[var(--border-light)] bg-[var(--card-light-bg)] p-6 shadow-[var(--shadow-card)] backdrop-blur-sm sm:p-8">
-        <article class="agreement-doc">
-          <UserAgreementDocument />
-        </article>
-      </div>
+  <section class="apple-section apple-section--light apple-info-page">
+    <div class="apple-info-shell apple-info-shell--narrow">
+      <article class="apple-doc">
+        <UserAgreementDocument />
+      </article>
     </div>
   </section>
 </AppLayout>
-
-<style>
-  :global(.agreement-doc h1) {
-    font-size: 2.25rem;
-    line-height: 1.1;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    color: var(--page-text);
-  }
-
-  :global(.agreement-doc h2) {
-    margin-top: 2.5rem;
-    font-size: 1.5rem;
-    line-height: 1.2;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    color: var(--page-text);
-  }
-
-  :global(.agreement-doc p),
-  :global(.agreement-doc li) {
-    font-size: 1rem;
-    line-height: 1.9;
-    color: var(--page-muted);
-  }
-
-  :global(.agreement-doc p) {
-    margin-top: 1rem;
-  }
-
-  :global(.agreement-doc ul) {
-    margin-top: 0.875rem;
-    padding-left: 1.5rem;
-    list-style: disc;
-  }
-
-  :global(.agreement-doc li + li) {
-    margin-top: 0.5rem;
-  }
-
-  :global(.agreement-doc strong) {
-    font-weight: 600;
-    color: var(--page-text);
-  }
-
-  :global(.agreement-doc a) {
-    color: var(--color-link);
-    text-decoration: none;
-  }
-
-  :global(.agreement-doc a:hover) {
-    color: var(--color-link-dark);
-  }
-
-  @media (max-width: 640px) {
-    :global(.agreement-doc h1) {
-      font-size: 1.875rem;
-    }
-
-    :global(.agreement-doc h2) {
-      margin-top: 2rem;
-      font-size: 1.25rem;
-    }
-  }
-</style>
