@@ -6,6 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "images:apple:optimize": "node scripts/optimize-apple-images.mjs --clean",
+    "images:apple:optimize:incremental": "node scripts/optimize-apple-images.mjs",
     "astro": "astro"
   },
   "dependencies": {

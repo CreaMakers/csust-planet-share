@@ -1,4 +1,4 @@
-const appleImageModules = import.meta.glob<{ default: ImageMetadata }>("../assets/Apple/**/*.{png,jpg,jpeg,webp,avif}", {
+const appleImageModules = import.meta.glob<{ default: ImageMetadata }>("../assets/Apple/**/*.webp", {
   eager: true,
 });
 
@@ -12,5 +12,5 @@ export const getAppleImage = (path: string) => {
   return imageModule.default;
 };
 
-export const appIconImage = getAppleImage("AppIcon.png");
-export const familyImage = getAppleImage("Family.png");
+export const appIconImage = getAppleImage("AppIcon.webp");
+export const familyImage = getAppleImage("Family.webp");
