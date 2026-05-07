@@ -30,3 +30,5 @@ assets/Apple
 
 # docker build output
 csust-planet-share-amd64.tar
+
+scripts/sync_dist.sh

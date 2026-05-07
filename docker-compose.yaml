@@ -1,9 +1,0 @@
-services:
-  app:
-    image: csust-planet-share:latest
-    container_name: csust-planet-share
-    ports:
-      - "4321:4321"
-    restart: unless-stopped
-    environment:
-      - PUBLIC_API_PREFIX=https://api.planet.zhelearn.com/v1
