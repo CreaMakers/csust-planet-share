@@ -6,14 +6,11 @@ import JoinUsSection from "../components/shared/JoinUsSection.astro";
 import PlatformPageLayout from "../components/shared/PlatformPageLayout.astro";
 import SourceCodeSection from "../components/shared/SourceCodeSection.astro";
 import { createInstallOptions, installOptionsSectionId, joinUsFormUrl, joinUsSectionId, pageDescription, pageSections, pageTitle, sourceCodeSectionId, sourceOrganization, sourceProjects } from "../data/android";
-import { readAndroidApkUrl } from "../lib/app-config";
-
-const androidApkUrl = await readAndroidApkUrl();
 ---
 
 <PlatformPageLayout title={pageTitle} description={pageDescription} sections={pageSections} installSectionId={installOptionsSectionId}>
   <AndroidHeroSection />
-  <InstallOptionsSection sectionId={installOptionsSectionId} options={createInstallOptions(androidApkUrl)} />
+  <InstallOptionsSection sectionId={installOptionsSectionId} options={createInstallOptions("#")} />
   <SourceCodeSection platform="android" sectionId={sourceCodeSectionId} organization={sourceOrganization} projects={sourceProjects} descriptionSuffix="组织下的开源项目。" />
   <JoinUsSection sectionId={joinUsSectionId} formUrl={joinUsFormUrl} />
   <AndroidPageScripts />

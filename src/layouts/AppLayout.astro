@@ -2,7 +2,6 @@
 import "../styles/global.css";
 import { appIconImage } from "../data/assets";
 import { androidSourceLinks, communityLinks, createAndroidPrimaryLinks, defaultLayoutDescription, defaultLayoutTitle, footerBrand, iosPrimaryLinks, iosSourceLinks } from "../data/app-layout";
-import { readAndroidApkUrl } from "../lib/app-config";
 import SmartImage from "../components/shared/SmartImage.astro";
 
 interface Props {
@@ -13,7 +12,7 @@ interface Props {
 const { title = defaultLayoutTitle, description = defaultLayoutDescription } = Astro.props;
 const hasHeaderNav = Astro.slots.has("header-nav");
 const hasHeaderActions = Astro.slots.has("header-actions");
-const androidPrimaryLinks = createAndroidPrimaryLinks(await readAndroidApkUrl());
+const androidPrimaryLinks = createAndroidPrimaryLinks("#");
 ---
 
 <html lang="zh-CN" class="h-full">
@@ -123,7 +122,7 @@ const androidPrimaryLinks = createAndroidPrimaryLinks(await readAndroidApkUrl())
               {
                 androidPrimaryLinks.map((link) => (
                   <li>
-                    <a href={link.href} class="transition-colors duration-200 hover:text-[var(--page-text)]">
+                    <a href={link.href} data-android-download-link={link.label === "Android 下载" ? "true" : undefined} class="transition-colors duration-200 hover:text-[var(--page-text)]">
                       {link.label}
                     </a>
                   </li>

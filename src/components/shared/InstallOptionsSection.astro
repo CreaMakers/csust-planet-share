@@ -26,7 +26,7 @@ const singleColumn = props.singleColumn ?? options.length === 1;
     <div class:list={["apple-card-grid gap-7", singleColumn ? "mx-auto max-w-3xl" : "apple-card-grid--two"]}>
       {
         options.map((option) => (
-          <a href={option.href} target="_blank" rel="noopener noreferrer" class="apple-card group flex h-full flex-col p-8">
+          <a href={option.href} data-android-download-link={option.icon === "android" ? "true" : undefined} target="_blank" rel="noopener noreferrer" class="apple-card group flex h-full flex-col p-8">
             <div class="mb-5 flex items-center gap-4">
               {option.icon === "appstore" ? (
                 <div class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--page-text)] text-[var(--page-bg)]">
