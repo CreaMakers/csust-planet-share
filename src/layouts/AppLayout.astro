@@ -36,6 +36,7 @@ const shouldLoadUmamiRecorder = Boolean(umamiRecorderScriptUrl && umamiWebsiteId
     {googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
     {msSiteVerification && <meta name="msvalidate.01" content={msSiteVerification} />}
     {baiduSiteVerification && <meta name="baidu-site-verification" content={baiduSiteVerification} />}
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
     <slot name="head" />
     {shouldLoadUmami && <script is:inline defer src={umamiScriptUrl} data-website-id={umamiWebsiteId} />}
