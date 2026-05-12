@@ -15,6 +15,23 @@ const previewImageUrl = new URL(appIconImage.src, Astro.url).href;
   <PageHeadMeta slot="head" title={pageTitle} description={pageDescription} pageUrl={pageUrl} previewImageUrl={previewImageUrl} />
   <script is:inline slot="head">
     (() => {
+      const isFromSameSiteSubpage = () => {
+        if (!document.referrer) {
+          return false;
+        }
+
+        try {
+          const referrerUrl = new URL(document.referrer);
+          return referrerUrl.origin === window.location.origin;
+        } catch {
+          return false;
+        }
+      };
+
+      if (isFromSameSiteSubpage()) {
+        return;
+      }
+
       const userAgent = navigator.userAgent.toLowerCase();
       const isApple = /(iphone|ipad|ipod|ios)/.test(userAgent) || userAgent.includes("macintosh");
       const isAndroid = userAgent.includes("android");
