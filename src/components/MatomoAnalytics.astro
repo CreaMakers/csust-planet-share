@@ -1,0 +1,101 @@
+---
+interface Props {
+  enabled?: boolean;
+  host: string;
+  siteId: string | number;
+  trackerUrl?: string;
+  scriptUrl?: string;
+  trackClientRouter?: boolean;
+  disableCookies?: boolean;
+  enableLinkTracking?: boolean;
+}
+
+const {
+  enabled = true,
+  host,
+  siteId,
+  trackerUrl = "matomo.php",
+  scriptUrl = "matomo.js",
+  trackClientRouter = false,
+  disableCookies = false,
+  enableLinkTracking = true,
+} = Astro.props;
+
+const matomoConfig = {
+  host: host.endsWith("/") ? host : `${host}/`,
+  siteId: String(siteId),
+  trackerUrl,
+  scriptUrl,
+  trackClientRouter,
+  disableCookies,
+  enableLinkTracking,
+};
+---
+
+{
+  enabled && (
+    <>
+      <script is:inline define:vars={{ matomoConfig }}>
+        (() => {
+          const config = matomoConfig;
+          const state = (window.__matomoAnalytics = window.__matomoAnalytics || {
+            initialized: false,
+            clientRouterTracking: false,
+            previousUrl: window.location.href,
+          });
+          const _paq = (window._paq = window._paq || []);
+
+          if (!state.initialized) {
+            state.initialized = true;
+
+            if (config.disableCookies) {
+              _paq.push(["disableCookies"]);
+            }
+
+            _paq.push(["trackPageView"]);
+
+            if (config.enableLinkTracking) {
+              _paq.push(["enableLinkTracking"]);
+            }
+
+            (() => {
+              _paq.push(["setTrackerUrl", config.host + config.trackerUrl]);
+              _paq.push(["setSiteId", config.siteId]);
+
+              if (document.getElementById("matomo-tracker-script")) {
+                return;
+              }
+
+              const script = document.createElement("script");
+              const firstScript = document.getElementsByTagName("script")[0];
+              script.id = "matomo-tracker-script";
+              script.async = true;
+              script.src = config.host + config.scriptUrl;
+              firstScript.parentNode.insertBefore(script, firstScript);
+            })();
+          }
+
+          if (config.trackClientRouter && !state.clientRouterTracking) {
+            state.clientRouterTracking = true;
+            document.addEventListener("astro:page-load", () => {
+              const currentUrl = window.location.href;
+
+              if (currentUrl === state.previousUrl) {
+                return;
+              }
+
+              const _paq = (window._paq = window._paq || []);
+              _paq.push(["setReferrerUrl", state.previousUrl]);
+              _paq.push(["setCustomUrl", currentUrl]);
+              _paq.push(["setDocumentTitle", document.title]);
+              _paq.push(["deleteCustomVariables", "page"]);
+              _paq.push(["trackPageView"]);
+
+              state.previousUrl = currentUrl;
+            });
+          }
+        })();
+      </script>
+    </>
+  )
+}

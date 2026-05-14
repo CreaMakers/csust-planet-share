@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { appIconImage } from "../data/assets";
 import { androidSourceLinks, communityLinks, createAndroidPrimaryLinks, defaultLayoutDescription, defaultLayoutTitle, footerBrand, iosPrimaryLinks, iosSourceLinks } from "../data/app-layout";
+import MatomoAnalytics from "../components/MatomoAnalytics.astro";
 import SmartImage from "../components/shared/SmartImage.astro";
 
 interface Props {
@@ -16,6 +17,11 @@ const androidPrimaryLinks = createAndroidPrimaryLinks("#");
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const msSiteVerification = import.meta.env.PUBLIC_MS_SITE_VERIFICATION;
 const baiduSiteVerification = import.meta.env.PUBLIC_BAIDU_SITE_VERIFICATION;
+const matomoHost = import.meta.env.PUBLIC_MATOMO_HOST;
+const matomoSiteId = import.meta.env.PUBLIC_MATOMO_SITE_ID;
+const matomoTrackerUrl = import.meta.env.PUBLIC_MATOMO_TRACKER_URL;
+const matomoScriptUrl = import.meta.env.PUBLIC_MATOMO_SCRIPT_URL;
+const isMatomoEnabled = Boolean(matomoHost && matomoSiteId);
 ---
 
 <html lang="zh-CN" class="h-full">
@@ -31,6 +37,7 @@ const baiduSiteVerification = import.meta.env.PUBLIC_BAIDU_SITE_VERIFICATION;
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
     <slot name="head" />
+    {isMatomoEnabled && <MatomoAnalytics host={matomoHost} siteId={matomoSiteId} trackerUrl={matomoTrackerUrl} scriptUrl={matomoScriptUrl} />}
     <script is:inline>
       (() => {
         const storageKey = "csust-theme-mode";
