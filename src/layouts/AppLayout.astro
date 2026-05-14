@@ -13,17 +13,9 @@ const { title = defaultLayoutTitle, description = defaultLayoutDescription } = A
 const hasHeaderNav = Astro.slots.has("header-nav");
 const hasHeaderActions = Astro.slots.has("header-actions");
 const androidPrimaryLinks = createAndroidPrimaryLinks("#");
-const umamiScriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL;
-const umamiRecorderScriptUrl = import.meta.env.PUBLIC_UMAMI_RECORDER_SCRIPT_URL;
-const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
-const umamiRecorderSampleRate = import.meta.env.PUBLIC_UMAMI_RECORDER_SAMPLE_RATE;
-const umamiRecorderMaskLevel = import.meta.env.PUBLIC_UMAMI_RECORDER_MASK_LEVEL;
-const umamiRecorderMaxDuration = import.meta.env.PUBLIC_UMAMI_RECORDER_MAX_DURATION;
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const msSiteVerification = import.meta.env.PUBLIC_MS_SITE_VERIFICATION;
 const baiduSiteVerification = import.meta.env.PUBLIC_BAIDU_SITE_VERIFICATION;
-const shouldLoadUmami = Boolean(umamiScriptUrl && umamiWebsiteId);
-const shouldLoadUmamiRecorder = Boolean(umamiRecorderScriptUrl && umamiWebsiteId);
 ---
 
 <html lang="zh-CN" class="h-full">
@@ -39,8 +31,6 @@ const shouldLoadUmamiRecorder = Boolean(umamiRecorderScriptUrl && umamiWebsiteId
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
     <slot name="head" />
-    {shouldLoadUmami && <script is:inline defer src={umamiScriptUrl} data-website-id={umamiWebsiteId} />}
-    {shouldLoadUmamiRecorder && <script is:inline defer src={umamiRecorderScriptUrl} data-website-id={umamiWebsiteId} data-sample-rate={umamiRecorderSampleRate} data-mask-level={umamiRecorderMaskLevel} data-max-duration={umamiRecorderMaxDuration} />}
     <script is:inline>
       (() => {
         const storageKey = "csust-theme-mode";

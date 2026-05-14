@@ -35,9 +35,6 @@
    主要配置项如下：
    - `PUBLIC_SITE_URL`：站点公开访问地址，用于生成 canonical、Open Graph 与 Twitter Card 中的绝对 URL。生产环境请填写正式域名，例如 `https://planet.example.com`。
    - `PUBLIC_API_PREFIX`：后端接口地址前缀，需要指向配套的 go-csust-planet 服务。
-   - `PUBLIC_UMAMI_SCRIPT_URL` 与 `PUBLIC_UMAMI_WEBSITE_ID`：Umami 统计脚本地址与站点 ID，二者都填写后才会加载基础统计脚本。
-   - `PUBLIC_UMAMI_RECORDER_SCRIPT_URL`：Umami Recorder 脚本地址，填写后会配合站点 ID 加载录制脚本。
-   - `PUBLIC_UMAMI_RECORDER_SAMPLE_RATE`、`PUBLIC_UMAMI_RECORDER_MASK_LEVEL`、`PUBLIC_UMAMI_RECORDER_MAX_DURATION`：Umami Recorder 的采样率、脱敏等级与最大录制时长。
 
 4. 运行项目
 
